@@ -1,6 +1,15 @@
+import 'package:college_super_admin_app/core/network/apiHelper/locator.dart';
+import 'package:college_super_admin_app/core/network/apiHelper/resource.dart';
+import 'package:college_super_admin_app/core/network/apiHelper/status.dart';
+import 'package:college_super_admin_app/core/services/localStorage/shared_pref.dart';
+import 'package:college_super_admin_app/core/utils/commonWidgets/custom_dropdown.dart';
+import 'package:college_super_admin_app/core/utils/commonWidgets/custom_shimmer.dart';
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
+import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:college_super_admin_app/features/dashboard_module/data/dashboard_usecase.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/get_course_list_model.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/revenue_model_by_course.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -12,234 +21,255 @@ class CourseRevenueContainer extends StatefulWidget {
 }
 
 class _CourseRevenueContainerState extends State<CourseRevenueContainer> {
-  String selectedCourse = 'BBA';
+  String selectedCourseLabel = '';
+  final DashboardUsecase _dashboardUsecase = getIt<DashboardUsecase>();
+  final SharedPref _pref = getIt<SharedPref>();
+  bool isLoading = false;
+  List<GetCourseListModel> getCourseList = [];
+  Map<String, int> getCourseListMap = {};
+  List<RevenueModelByCourse> monthlyRevenueList = [];
 
-  final Map<String, List<FlSpot>> courseData = {
-    'BBA': [
-      FlSpot(0, 125),
-      FlSpot(1, 220),
-      FlSpot(2, 360),
-      FlSpot(3, 440),
-      FlSpot(4, 565),
-      FlSpot(5, 645),
-      FlSpot(6, 780),
-      FlSpot(7, 180),
-      FlSpot(8, 478),
-      FlSpot(9, 780),
-      FlSpot(10, 580),
-      FlSpot(11, 280),
-    ],
-    'BCA': [
-      FlSpot(0, 130),
-      FlSpot(1, 240),
-      FlSpot(2, 335),
-      FlSpot(3, 460),
-      FlSpot(4, 550),
-      FlSpot(5, 760),
-      FlSpot(6, 675),
-      FlSpot(7, 175),
-      FlSpot(8, 575),
-      FlSpot(9, 675),
-      FlSpot(10, 175),
-      FlSpot(11, 675),
-    ],
-    'BCA Computer science': [
-      FlSpot(0, 130),
-      FlSpot(1, 240),
-      FlSpot(2, 335),
-      FlSpot(3, 460),
-      FlSpot(4, 650),
-      FlSpot(5, 760),
-      FlSpot(6, 675),
-      FlSpot(7, 175),
-      FlSpot(8, 505),
-      FlSpot(9, 675),
-      FlSpot(10, 575),
-      FlSpot(11, 675),
-    ],
-  };
+  List<String> months = [];
+  List<FlSpot> lineSpots = [];
 
-  final List<String> months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-  ];
+  @override
+  void initState() {
+    super.initState();
+    getAllCourseName();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: ScreenUtils().screenWidth(context),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.gray7.withOpacity(0.25),
-              blurRadius: 4,
-              offset: const Offset(0, 4),
-              spreadRadius: 0,
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(ScreenUtils().screenWidth(context) * 0.04),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return isLoading
+        ? Column(
             children: [
-              // Title and Dropdown
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Course Name: $selectedCourse',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  DropdownButtonHideUnderline(
-                    child: DropdownButton2<String>(
-                      isExpanded: true,
-                      customButton: const Icon(Icons.edit),
-                      items: courseData.keys.map((course) {
-                        return DropdownMenuItem<String>(
-                          value: course,
-                          child: Text(
-                            course,
-                            // overflow: TextOverflow.ellipsis,
-                            // maxLines: 1,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                      value: selectedCourse,
-                      onChanged: (value) {
-                        if (value != null) {
-                          setState(() {
-                            selectedCourse = value;
-                          });
-                        }
-                      },
-                      dropdownStyleData: DropdownStyleData(
-                        // maxHeight: ScreenUtils().,
-                        width: ScreenUtils().screenWidth(context) * 0.5,
-                        padding: const EdgeInsets.all(8),
-                      ),
-                    ),
-                  ),
-                ],
+              CustomShimmer(
+                height: ScreenUtils().screenHeight(context) * 0.05,
+                width: ScreenUtils().screenWidth(context),
+                radius: 10,
               ),
-
               SizedBox(
                 height: ScreenUtils().screenHeight(context) * 0.02,
               ),
-
-              // Graph container
-              AspectRatio(
-                aspectRatio: 1,
-                child: LineChart(
-                  LineChartData(
-                    minY: 0,
-                    maxY: 1000,
-                    titlesData: FlTitlesData(
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          getTitlesWidget: (value, _) {
-                            final index = value.toInt();
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                months[index % months.length],
-                                style: const TextStyle(fontSize: 10),
-                              ),
-                            );
-                          },
-                          interval: 1,
-                        ),
-                      ),
-                      topTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      rightTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                    ),
-                    gridData: FlGridData(
-                      show: false,
-                      drawVerticalLine: true,
-                    ),
-                    borderData: FlBorderData(
-                      show: false,
-                      border: Border.all(
-                        color: Colors.black12,
-                      ),
-                    ),
-                    lineBarsData: [
-                      LineChartBarData(
-                        spots: courseData[selectedCourse] ?? [],
-                        isCurved: true,
-                        color: AppColors.progressBarColor,
-                        barWidth: 2,
-                        isStrokeCapRound: true,
-                        belowBarData: BarAreaData(
-                          show: true,
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColors.progressBarColor.withOpacity(0.7),
-                              AppColors.colorSkyBlue300.withOpacity(0.05),
-
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-
-                        ),
-                        dotData: FlDotData(
-                          show: true,
-                          getDotPainter: (spot, percent, bar, index) =>
-                              FlDotCirclePainter(
-                            radius: 3,
-                            color:AppColors.progressBarColor,
-                            strokeWidth: 2,
-                            strokeColor:AppColors.progressBarColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                    lineTouchData: LineTouchData(
-                      touchTooltipData: LineTouchTooltipData(
-                        tooltipRoundedRadius: 8,
-                        getTooltipItems: (spots) {
-                          return spots.map((spot) {
-                            final month = months[spot.x.toInt()];
-                            return LineTooltipItem(
-                              '$month\n$selectedCourse: ${spot.y.toInt()}',
-                              const TextStyle(color: Colors.white),
-                            );
-                          }).toList();
-                        },
-                      ),
-                    ),
-                  ),
-                  duration: const Duration(milliseconds: 700),
-                  curve: Curves.easeInOut,
-                ),
+              CustomShimmer(
+                height: ScreenUtils().screenHeight(context) * 0.3,
+                width: ScreenUtils().screenWidth(context),
+                radius: 10,
               ),
             ],
-          ),
-        ));
+          )
+        : Container(
+            width: ScreenUtils().screenWidth(context),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.gray7.withOpacity(0.25),
+                  blurRadius: 4,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding:
+                  EdgeInsets.all(ScreenUtils().screenWidth(context) * 0.04),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomDropdownForAttendance(
+                    placeHolderText: selectedCourseLabel.isEmpty
+                        ? 'Select Class'
+                        : selectedCourseLabel,
+                    data: getCourseListMap,
+                    onValueSelected: (String label, int id) {
+                      setState(() {
+                        selectedCourseLabel = label;
+                      });
+                      getRevenueByCourse(id.toString());
+                    },
+                    isDisabled: false,
+                  ),
+                  SizedBox(height: ScreenUtils().screenHeight(context) * 0.02),
+                  lineSpots.isNotEmpty
+                      ? AspectRatio(
+                          aspectRatio: 1.4,
+                          child: LineChart(
+                            LineChartData(
+                              minY: 0,
+                              maxY: (lineSpots
+                                          .map((e) => e.y)
+                                          .reduce((a, b) => a > b ? a : b) *
+                                      1.2)
+                                  .ceilToDouble(),
+                              titlesData: FlTitlesData(
+                                leftTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                                bottomTitles: AxisTitles(
+                                  sideTitles: SideTitles(
+                                    showTitles: true,
+                                    interval: 1,
+                                    getTitlesWidget: (value, _) {
+                                      final index = value.toInt();
+                                      if (index >= 0 && index < months.length) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 8.0,
+                                          ),
+                                          child: Transform.rotate(
+                                            angle: 45 * 3.1415926535 / 180,
+                                            child: Text(
+                                              months[index].length > 3
+                                                  ? months[index]
+                                                      .substring(0, 3)
+                                                  : months[index],
+                                              style: const TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.black87),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      return const SizedBox.shrink();
+                                    },
+                                  ),
+                                ),
+                                topTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                                rightTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false),
+                                ),
+                              ),
+                              gridData: FlGridData(show: false),
+                              borderData: FlBorderData(show: false),
+                              clipData: FlClipData.all(),
+                              lineBarsData: [
+                                LineChartBarData(
+                                  spots: lineSpots,
+                                  isCurved: true,
+                                  color: AppColors.progressBarColor,
+                                  barWidth: 3,
+                                  isStrokeCapRound: true,
+                                  belowBarData: BarAreaData(
+                                    show: true,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        AppColors.progressBarColor
+                                            .withOpacity(0.7),
+                                        AppColors.colorSkyBlue300
+                                            .withOpacity(0.05),
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                                  ),
+                                  dotData: FlDotData(
+                                    show: true,
+                                    getDotPainter:
+                                        (spot, percent, bar, index) =>
+                                            FlDotCirclePainter(
+                                      radius: 4,
+                                      color: Colors.white,
+                                      strokeWidth: 2,
+                                      strokeColor: AppColors.progressBarColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              lineTouchData: LineTouchData(
+                                handleBuiltInTouches: true,
+                                touchTooltipData: LineTouchTooltipData(
+                                  tooltipRoundedRadius: 8,
+                                  getTooltipItems: (spots) {
+                                    return spots.map((spot) {
+                                      final index = spot.x.toInt();
+                                      final month =
+                                          index >= 0 && index < months.length
+                                              ? months[index]
+                                              : 'Unknown';
+                                      return LineTooltipItem(
+                                        '$month\n₹${spot.y.toInt()}',
+                                        const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      );
+                                    }).toList();
+                                  },
+                                ),
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 700),
+                            curve: Curves.easeOutCubic,
+                          ),
+                        )
+                      : Center(
+                          child: Text(
+                          'Select a course to view revenue chart',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.colorBlack),
+                        )),
+                ],
+              ),
+            ),
+          );
+  }
+
+  Future<void> getAllCourseName() async {
+    setState(() => isLoading = true);
+    Resource resource = await _dashboardUsecase.getCourseList(requestData: {});
+    if (resource.status == STATUS.SUCCESS) {
+      getCourseList = (resource.data as List)
+          .map((x) => GetCourseListModel.fromJson(x))
+          .toList();
+      for (var item in getCourseList) {
+        if (item.id != null) {
+          getCourseListMap[(item.courseName ?? '').trim()] = item.id!;
+        }
+      }
+    } else {
+      CommonUtils().flutterSnackBar(
+        context: context,
+        mes: resource.message ?? '',
+        messageType: 4,
+      );
+    }
+    setState(() => isLoading = false);
+  }
+
+  Future<void> getRevenueByCourse(String id) async {
+    setState(() {
+      isLoading = true;
+      lineSpots.clear();
+      months.clear();
+    });
+
+    Resource resource = await _dashboardUsecase.courseRevenueByCourse(
+      requestData: {},
+      courseId: id,
+    );
+
+    if (resource.status == STATUS.SUCCESS) {
+      monthlyRevenueList = (resource.data as List)
+          .map((x) => RevenueModelByCourse.fromJson(x))
+          .toList();
+
+      for (int i = 0; i < monthlyRevenueList.length; i++) {
+        final item = monthlyRevenueList[i];
+        months.add(item.month ?? '');
+        lineSpots.add(FlSpot(i.toDouble(), item.total?.toDouble() ?? 0.0));
+      }
+    } else {
+      CommonUtils().flutterSnackBar(
+        context: context,
+        mes: resource.message ?? '',
+        messageType: 4,
+      );
+    }
+
+    setState(() => isLoading = false);
   }
 }

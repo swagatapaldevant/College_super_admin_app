@@ -1,9 +1,11 @@
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/homeDashboardNewAdmissionModel.dart';
 import 'package:flutter/material.dart';
 
 class NewAdmissionContainer extends StatefulWidget {
-  const NewAdmissionContainer({super.key});
+  final List<HomeDashboardNewAdmissionModel> studentList;
+   const NewAdmissionContainer({super.key, required this.studentList});
 
   @override
   State<NewAdmissionContainer> createState() => _NewAdmissionContainerState();
@@ -42,7 +44,7 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
                       color: AppColors.colorBlack),
                 ),
                 Text(
-                  "You have new 18 admission",
+                  "You have new ${widget.studentList.length} admission",
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
@@ -52,9 +54,14 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
 
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 8,
+                    itemCount: widget.studentList.length,
                       itemBuilder: (BuildContext context, int index){
-                        return studentData();
+                        return studentData(widget.studentList[index].name.toString(),
+                        widget.studentList[index].identificationNo.toString(),
+
+                          widget.studentList[index].gender.toString(),
+                          widget.studentList[index].admissionDate.toString()
+                        );
                       }),
                 )
 
@@ -93,8 +100,9 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
     );
   }
 
-  Widget studentData(){
+  Widget studentData(String studentName, String studentId,  String gender, String date){
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -103,34 +111,44 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
               backgroundImage: NetworkImage("https://media.istockphoto.com/id/1351018006/photo/smiling-male-student-sitting-in-university-classroom.jpg?s=612x612&w=0&k=20&c=G9doLib_ILUijluTSD5hstZBWqHHIcw4dBHhQcs-ON4="),
             ),
             SizedBox(width: 10,),
-            Column(
-              children: [
-                Text("Swagata Pal", style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: AppColors.colorBlack
-                ),),
-                Text("ID 1234565", style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 10,
-                    color: AppColors.gray7
-                ),),
-              ],
+            SizedBox(
+              width: ScreenUtils().screenWidth(context)*0.4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(studentName, style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: AppColors.colorBlack
+                  ),),
+                  Text(studentId, style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 10,
+                      color: AppColors.gray7
+                  ),),
+                ],
+              ),
             ),
-            SizedBox(width: ScreenUtils().screenWidth(context)*0.2,),
+            //SizedBox(width: ScreenUtils().screenWidth(context)*0.2,),
 
             Row(
               children: [
                 Icon(Icons.check_box, color: AppColors.blue,size: 20,),
                 SizedBox(width: 5,),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("VII - A", style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                        color: AppColors.blue
+                    // Text(courseName, style: TextStyle(
+                    //     fontWeight: FontWeight.w500,
+                    //     fontSize: 12,
+                    //     color: AppColors.blue
+                    // ),),
+                    Text(gender, style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 10,
+                        color: AppColors.gray7
                     ),),
-                    Text("Class 7", style: TextStyle(
+                    Text(date, style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 10,
                         color: AppColors.gray7

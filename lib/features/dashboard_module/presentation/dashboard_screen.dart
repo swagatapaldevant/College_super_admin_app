@@ -1,8 +1,14 @@
+import 'package:college_super_admin_app/core/network/apiHelper/locator.dart';
+import 'package:college_super_admin_app/core/network/apiHelper/resource.dart';
+import 'package:college_super_admin_app/core/network/apiHelper/status.dart';
+import 'package:college_super_admin_app/core/services/localStorage/shared_pref.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/circular_progress_bar.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/common_button.dart';
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/app_dimensions.dart';
+import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
+import 'package:college_super_admin_app/features/dashboard_module/data/dashboard_usecase.dart';
 import 'package:college_super_admin_app/features/dashboard_module/presentation/fees_received_container.dart';
 import 'package:college_super_admin_app/features/dashboard_module/presentation/scholarship_trends_container.dart';
 import 'package:college_super_admin_app/features/dashboard_module/widgets/dashboard_small_container.dart';
@@ -27,6 +33,35 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   DateTime? currentBackPressTime;
   int _selectedIndex = 0;
+  String imgUrl = "";
+  String userNme = "";
+
+  bool isLoading = false;
+  final DashboardUsecase _dashboardUsecase = getIt<DashboardUsecase>();
+  final SharedPref _pref = getIt<SharedPref>();
+  @override
+  void initState()  {
+    // TODO: implement initState
+    super.initState();
+    getLocalData();
+
+
+  }
+
+  Future<void> getLocalData() async {
+    try {
+      final image = await _pref.getProfileImage();
+      final userName = await _pref.getUserName();
+      if (image != null) {
+        setState(() {
+          imgUrl = "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D";
+          userNme= userName??"";
+        });
+      }
+    } catch (e) {
+      print('Error loading local data: $e');
+    }
+  }
 
   void _toggleContainer(int index) {
     setState(() {
@@ -75,7 +110,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     SizedBox(
                       width: 8,
                     ),
-                    HeaderSection(),
+                    HeaderSection(imgUrl: imgUrl, name: userNme,),
                   ],
                 ),
                 Text(

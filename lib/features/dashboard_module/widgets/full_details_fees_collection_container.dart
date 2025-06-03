@@ -1,9 +1,11 @@
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/fees_collection_by_student_model.dart';
 import 'package:flutter/material.dart';
 
 class FullDetailsFeesCollectionContainer extends StatefulWidget {
-  const FullDetailsFeesCollectionContainer({super.key});
+  final List<FeesCollectionBystudentModel> studentList;
+  const FullDetailsFeesCollectionContainer({super.key, required this.studentList});
 
   @override
   State<FullDetailsFeesCollectionContainer> createState() =>
@@ -12,7 +14,7 @@ class FullDetailsFeesCollectionContainer extends StatefulWidget {
 
 class _FullDetailsFeesCollectionContainerState
     extends State<FullDetailsFeesCollectionContainer> {
-  final String name = "Swagata Pal";
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,72 +54,76 @@ class _FullDetailsFeesCollectionContainerState
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: 9,
+                  itemCount: widget.studentList.length,
                   itemBuilder: (BuildContext context, int index) {
+                    final String name = "${widget.studentList[index].firstName} ${widget.studentList[index].lastName}";
                     return Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 18,
-                                  backgroundImage: NetworkImage(
-                                      "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: 2,
-                                  children: [
-                                    Text(
-                                      name.length > 13 ? '${name.substring(0, 13)}...' : name,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: AppColors.colorBlack),
-                                    ),
-                                    Text(
-                                      'ID 123447',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 10,
-                                          color: AppColors.gray7),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: 'VII-A\n',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                    color: AppColors.blue),
-                                children: const <TextSpan>[
-                                  TextSpan(
-                                      text: 'Class - 7',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 10,
-                                          color: AppColors.gray7)),
+                            SizedBox(
+                              width: ScreenUtils().screenWidth(context)*0.5,
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 18,
+                                    backgroundImage: NetworkImage(
+                                        "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    spacing: 2,
+                                    children: [
+                                      Text(
+                                        name.length > 13 ? '${name.substring(0, 13)}...' : name,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                            color: AppColors.colorBlack),
+                                      ),
+                                      Text(
+                                        widget.studentList[index].identificationNo.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 10,
+                                            color: AppColors.gray7),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
+                            // RichText(
+                            //   text: TextSpan(
+                            //     text: 'VII-A\n',
+                            //     style: TextStyle(
+                            //         fontWeight: FontWeight.w600,
+                            //         fontSize: 12,
+                            //         color: AppColors.blue),
+                            //     children: const <TextSpan>[
+                            //       TextSpan(
+                            //           text: 'Class - 7',
+                            //           style: TextStyle(
+                            //               fontWeight: FontWeight.w500,
+                            //               fontSize: 10,
+                            //               color: AppColors.gray7)),
+                            //     ],
+                            //   ),
+                            // ),
                             RichText(
                               text: TextSpan(
-                                text: 'Admission\n',
+                                text: 'Paid on\n',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 10,
                                     color: AppColors.colorBlack),
-                                children: const <TextSpan>[
+                                children:  <TextSpan>[
                                   TextSpan(
-                                      text: '27-5-25',
+                                      text: widget.studentList[index].paidOn.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 10,
@@ -126,7 +132,7 @@ class _FullDetailsFeesCollectionContainerState
                               ),
                             ),
                             Text(
-                              '₹ 10,500.00',
+                              '₹ ${widget.studentList[index].amount.toString()}',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 11,

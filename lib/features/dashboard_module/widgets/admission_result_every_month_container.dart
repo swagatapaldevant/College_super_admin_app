@@ -5,11 +5,16 @@ import 'package:flutter/material.dart';
 
 class AdmissionResultEveryMonthContainer extends StatefulWidget {
   final List<String> weekDays;
-  final List<double> blueData;
-  final List<double> redData;
+  final List<int> blueData;
+  // final List<int> redData;
   final String text;
 
-  const AdmissionResultEveryMonthContainer({super.key, required this.weekDays, required this.blueData, required this.redData, required this.text});
+  const AdmissionResultEveryMonthContainer(
+      {super.key,
+      required this.weekDays,
+      required this.blueData,
+      // required this.redData,
+      required this.text});
 
   @override
   State<AdmissionResultEveryMonthContainer> createState() =>
@@ -43,7 +48,7 @@ class _AdmissionResultEveryMonthContainerState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-             widget.text,
+              widget.text,
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -52,49 +57,52 @@ class _AdmissionResultEveryMonthContainerState
             SizedBox(
               height: ScreenUtils().screenHeight(context) * 0.02,
             ),
-            AdmissionResultBarChartDetails(weekDays: widget.weekDays, blueData: widget.blueData, redData: widget.redData,),
-            SizedBox(
-              height: ScreenUtils().screenHeight(context) * 0.02,
+            AdmissionResultBarChartDetails(
+              weekDays: widget.weekDays,
+              blueData: widget.blueData,
+              //redData: widget.redData,
             ),
-            Row(
-              spacing: 10,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  spacing: 5,
-                  children: [
-                    CircleAvatar(
-                      radius: 5,
-                      backgroundColor: AppColors.blue,
-                    ),
-                    Text(
-                      "Others",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.colorBlack,
-                          fontSize: 12),
-                    )
-                  ],
-                ),
-
-                Row(
-                  spacing: 5,
-                  children: [
-                    CircleAvatar(
-                      radius: 5,
-                      backgroundColor: AppColors.progressBarColor,
-                    ),
-                    Text(
-                      "Cash",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.colorBlack,
-                          fontSize: 12),
-                    )
-                  ],
-                )
-              ],
-            )
+            SizedBox(
+              height: ScreenUtils().screenHeight(context) * 0.01,
+            ),
+            // Row(
+            //   spacing: 10,
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     Row(
+            //       spacing: 5,
+            //       children: [
+            //         CircleAvatar(
+            //           radius: 5,
+            //           backgroundColor: AppColors.blue,
+            //         ),
+            //         Text(
+            //           "Others",
+            //           style: TextStyle(
+            //               fontWeight: FontWeight.w500,
+            //               color: AppColors.colorBlack,
+            //               fontSize: 12),
+            //         )
+            //       ],
+            //     ),
+            //     Row(
+            //       spacing: 5,
+            //       children: [
+            //         CircleAvatar(
+            //           radius: 5,
+            //           backgroundColor: AppColors.progressBarColor,
+            //         ),
+            //         Text(
+            //           "Cash",
+            //           style: TextStyle(
+            //               fontWeight: FontWeight.w500,
+            //               color: AppColors.colorBlack,
+            //               fontSize: 12),
+            //         )
+            //       ],
+            //     )
+            //   ],
+            // )
           ],
         ),
       ),
@@ -104,9 +112,14 @@ class _AdmissionResultEveryMonthContainerState
 
 class AdmissionResultBarChartDetails extends StatefulWidget {
   final List<String> weekDays;
-  final List<double> blueData;
-  final List<double> redData;
-  const AdmissionResultBarChartDetails({super.key, required this.weekDays, required this.blueData, required this.redData});
+  final List<int> blueData;
+  //final List<double> redData;
+  const AdmissionResultBarChartDetails({
+    super.key,
+    required this.weekDays,
+    required this.blueData,
+    //required this.redData
+  });
 
   @override
   _AdmissionResultBarChartDetailsState createState() =>
@@ -115,26 +128,8 @@ class AdmissionResultBarChartDetails extends StatefulWidget {
 
 class _AdmissionResultBarChartDetailsState
     extends State<AdmissionResultBarChartDetails> {
-  // final List<String> weekDays = [
-  //   'Jan',
-  //   'Feb',
-  //   'Mar',
-  //   'Apr',
-  //   'May',
-  //   'Jun',
-  //   'Jul',
-  //   'Aug',
-  //   'Sep',
-  //   'Oct',
-  //   'Nov',
-  //   'Dec',
-  // ];
-
-  // final List<double> blueData = [4, 5, 3.5, 6, 5, 10, 9, 4, 5, 3.5, 6, 5];
-  // final List<double> redData = [2, 4, 6, 4, 4.5, 6.5, 5, 2, 4, 6, 4, 4.5];
-
-  List<double> currentBlue = List.filled(12, 0);
-  List<double> currentRed = List.filled(12, 0);
+  List<int> currentBlue = List.filled(12, 0);
+  //List<double> currentRed = List.filled(12, 0);
 
   @override
   void initState() {
@@ -147,7 +142,7 @@ class _AdmissionResultBarChartDetailsState
       await Future.delayed(const Duration(milliseconds: 200));
       setState(() {
         currentBlue[i] = widget.blueData[i];
-        currentRed[i] = widget.redData[i];
+        //currentRed[i] = widget.redData[i];
       });
     }
   }
@@ -158,13 +153,13 @@ class _AdmissionResultBarChartDetailsState
       aspectRatio: 1.4,
       child: BarChart(
         BarChartData(
-          maxY: 12,
+          maxY: getMaxY(widget.blueData.map((e) => e.toDouble()).toList()),
           barGroups: List.generate(widget.weekDays.length, (index) {
             return BarChartGroupData(
               x: index,
               barRods: [
                 BarChartRodData(
-                  toY: currentBlue[index],
+                  toY: currentBlue[index].toDouble(),
                   width: 8,
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(6),
@@ -175,18 +170,18 @@ class _AdmissionResultBarChartDetailsState
                     end: Alignment.topCenter,
                   ),
                 ),
-                BarChartRodData(
-                  toY: currentRed[index],
-                  width: 8,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(6),
-                      topLeft: Radius.circular(6)),
-                  gradient: LinearGradient(
-                    colors: [AppColors.progressBarColor, AppColors.colorGreen],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                  ),
-                ),
+                // BarChartRodData(
+                //   toY: currentRed[index],
+                //   width: 8,
+                //   borderRadius: BorderRadius.only(
+                //       topRight: Radius.circular(6),
+                //       topLeft: Radius.circular(6)),
+                //   gradient: LinearGradient(
+                //     colors: [AppColors.progressBarColor, AppColors.colorGreen],
+                //     begin: Alignment.bottomCenter,
+                //     end: Alignment.topCenter,
+                //   ),
+                // ),
               ],
               barsSpace: 0,
             );
@@ -198,13 +193,17 @@ class _AdmissionResultBarChartDetailsState
                 //reservedSize: 32,
                 getTitlesWidget: (value, _) {
                   return Padding(
-                    padding: const EdgeInsets.only(top: 6.0),
-                    child: Text(
-                      widget. weekDays[value.toInt()],
-                      style: const TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
+                    padding: EdgeInsets.only(
+                        top: ScreenUtils().screenHeight(context) * 0.01),
+                    child: Transform.rotate(
+                      angle: 45 * 3.1415926535 / 180,
+                      child: Text(
+                        widget.weekDays[value.toInt()],
+                        style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black87,
+                        ),
                       ),
                     ),
                   );
@@ -246,5 +245,11 @@ class _AdmissionResultBarChartDetailsState
         ),
       ),
     );
+  }
+
+  double getMaxY(List<double> allValues) {
+    if (allValues.isEmpty) return 10;
+    double maxVal = allValues.reduce((a, b) => a > b ? a : b);
+    return (maxVal * 1.2).ceilToDouble(); // add 20% padding
   }
 }

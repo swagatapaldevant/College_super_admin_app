@@ -47,6 +47,7 @@ dependencies:
   fl_chart:
   intl: ^0.20.2
   dropdown_button2: ^2.3.9
+  
 
 dev_dependencies:
   flutter_test:

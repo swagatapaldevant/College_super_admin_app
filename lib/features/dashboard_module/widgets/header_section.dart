@@ -2,7 +2,9 @@ import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class HeaderSection extends StatelessWidget {
-  const HeaderSection({super.key});
+  final String imgUrl;
+  final String name;
+  const HeaderSection({super.key, required this.imgUrl, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +20,13 @@ class HeaderSection extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 20,
-              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"),
+              backgroundImage: NetworkImage(imgUrl),
+              //backgroundImage: NetworkImage("https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"),
             ),
             SizedBox(width: 5,),
             Column(
               children: [
-                Text("Mr Dasgupta", style: TextStyle(
+                Text(name, style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: AppColors.colorBlack

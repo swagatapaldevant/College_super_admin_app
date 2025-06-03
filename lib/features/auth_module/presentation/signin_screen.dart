@@ -1,5 +1,11 @@
+import 'package:college_super_admin_app/core/network/apiHelper/locator.dart';
+import 'package:college_super_admin_app/core/network/apiHelper/resource.dart';
+import 'package:college_super_admin_app/core/network/apiHelper/status.dart';
+import 'package:college_super_admin_app/core/services/localStorage/shared_pref.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/common_button.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/custom_textField.dart';
+import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
+import 'package:college_super_admin_app/features/auth_module/data/auth_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
@@ -22,6 +28,9 @@ class _SigninScreenState extends State<SigninScreen>
 
   bool rememberMe = false;
   bool obscureText = true;
+  bool isLoading = false;
+  final AuthUsecase _authUsecase = getIt<AuthUsecase>();
+  final SharedPref _pref = getIt<SharedPref>();
 
   @override
   void initState() {
@@ -158,18 +167,32 @@ class _SigninScreenState extends State<SigninScreen>
                       // Log In Button
                       _animatedChild(
                           index: 3,
-                          child: CommonButton(
-                            onTap: (){
-                              Navigator.pushNamed(context, "/DashboardScreen");
-                            },
-                              height: 48,
-                              width: ScreenUtils().screenWidth(context),
-                              buttonName: "Signin",
-                              fontSize: 16,
-                              borderRadius: 10,
-                              buttonTextColor: AppColors.white,
-                              gradientColor1: AppColors.blue,
-                              gradientColor2: AppColors.blue.withOpacity(0.5))),
+                          child: isLoading
+                              ? CircularProgressIndicator(
+                                  color: AppColors.blue,
+                                )
+                              : CommonButton(
+                                  onTap: () {
+                                    if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty)
+                                      {
+                                        loginAdmin();
+                                      }
+                                    else{
+                                      CommonUtils().flutterSnackBar(
+                                          context: context, mes:"Please enter email and password", messageType: 4);
+
+                                    }
+
+                                  },
+                                  height: 48,
+                                  width: ScreenUtils().screenWidth(context),
+                                  buttonName: "Signin",
+                                  fontSize: 16,
+                                  borderRadius: 10,
+                                  buttonTextColor: AppColors.white,
+                                  gradientColor1: AppColors.blue,
+                                  gradientColor2:
+                                      AppColors.blue.withOpacity(0.5))),
                     ],
                   ),
                 ),
@@ -199,5 +222,44 @@ class _SigninScreenState extends State<SigninScreen>
         child: child,
       ),
     );
+  }
+
+  loginAdmin() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    Map<String, dynamic> requestData = {
+      "email": emailController.text.trim(),
+      "password": passwordController.text.trim()
+    };
+    // {
+    //   "email": "admin@admin.com",
+    //   "password": "12345678"
+    // };
+
+    Resource resource = await _authUsecase.logIn(requestData: requestData);
+
+    if (resource.status == STATUS.SUCCESS) {
+      _pref.setLoginStatus(true);
+      _pref.setUserAuthToken(resource.data["token"]);
+      _pref.setProfileImage(resource.data['image']);
+      _pref.setUserName(
+          resource.data['first_name'] +" "+ resource.data['last_name']);
+      if (resource.data['user_type_id'] == 1) {
+        Navigator.pushNamed(context, "/DashboardScreen");
+      }
+      else{
+        CommonUtils().flutterSnackBar(
+            context: context, mes:"You are not an admin, you have not permission to view the app", messageType: 4);
+      }
+
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+      CommonUtils().flutterSnackBar(
+          context: context, mes: resource.message ?? "", messageType: 4);
+    }
   }
 }

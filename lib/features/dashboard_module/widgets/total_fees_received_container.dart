@@ -5,7 +5,10 @@ import 'package:college_super_admin_app/features/dashboard_module/widgets/bar_ch
 import 'package:flutter/material.dart';
 
 class TotalFeesReceivedContainer extends StatefulWidget {
-  const TotalFeesReceivedContainer({super.key});
+  final List<String> dates;
+  final List<double> cash;
+  final List<double> others;
+  const TotalFeesReceivedContainer({super.key, required this.dates, required this.cash, required this.others});
 
   @override
   State<TotalFeesReceivedContainer> createState() =>
@@ -14,6 +17,15 @@ class TotalFeesReceivedContainer extends StatefulWidget {
 
 class _TotalFeesReceivedContainerState
     extends State<TotalFeesReceivedContainer> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,7 +64,7 @@ class _TotalFeesReceivedContainerState
               ],
             ),
             SizedBox(height: 10,),
-            BarChartDetails(),
+            BarChartDetails(dates: widget.dates, cash: widget.cash, others:widget.others,),
           ],
         ),
       ),
