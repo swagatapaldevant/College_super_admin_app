@@ -7,7 +7,6 @@ import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
 import 'package:college_super_admin_app/features/dashboard_module/data/dashboard_usecase.dart';
-import 'package:college_super_admin_app/features/dashboard_module/widgets/new_admission_container.dart';
 import 'package:college_super_admin_app/features/dashboard_module/widgets/recently_scholarship_students_container.dart';
 import 'package:college_super_admin_app/features/dashboard_module/widgets/scholarship_trends_graph.dart';
 import 'package:fl_chart/fl_chart.dart';
