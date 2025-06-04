@@ -4,6 +4,7 @@ import 'package:college_super_admin_app/core/network/apiHelper/status.dart';
 import 'package:college_super_admin_app/core/services/localStorage/shared_pref.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/circular_progress_bar.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/common_button.dart';
+import 'package:college_super_admin_app/core/utils/commonWidgets/common_dialog.dart';
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/app_dimensions.dart';
 import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
@@ -17,6 +18,7 @@ import 'package:college_super_admin_app/features/dashboard_module/widgets/header
 import 'package:college_super_admin_app/features/dashboard_module/widgets/new_admission_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'admission_on_sheet_container.dart';
@@ -111,6 +113,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       width: 8,
                     ),
                     HeaderSection(imgUrl: imgUrl, name: userNme,),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Bounceable(
+                      onTap: (){
+                        CommonDialog(
+                            icon: Icons.logout,
+                            title: "Log Out",
+                            msg:
+                            "You are about to logout of your account. Please confirm.",
+                            activeButtonLabel: "Log Out",
+                            context: context,
+                            activeButtonOnClicked: () {
+                              _pref.clearOnLogout();
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                "/SigninScreen",
+                                    (Route<dynamic> route) =>
+                                false, // Removes all previous routes
+                              );
+                            });
+                      },
+                      child: CircleAvatar(
+                          backgroundColor: AppColors.gray2,
+                          child: Icon(
+                            Icons.logout,
+                            color: AppColors.darkBlue,
+                          )),
+                    ),
                   ],
                 ),
                 Text(

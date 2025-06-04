@@ -1,9 +1,11 @@
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/recently_scholarship_student.dart';
 import 'package:flutter/material.dart';
 
 class RecentlyScholarshipStudentsContainer extends StatefulWidget {
-  const RecentlyScholarshipStudentsContainer({super.key});
+  final List<RecentlyScholarshipStudent> studentList;
+   const RecentlyScholarshipStudentsContainer({super.key, required this.studentList});
 
   @override
   State<RecentlyScholarshipStudentsContainer> createState() =>
@@ -38,9 +40,10 @@ class _RecentlyScholarshipStudentsContainerState
               children: [
                 Expanded(
                   child: ListView.builder(
-                      itemCount: 8,
+                    physics: BouncingScrollPhysics(),
+                      itemCount: widget.studentList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return studentData();
+                        return studentData("${widget.studentList[index].firstName}  ${widget.studentList[index].lastName}", widget.studentList[index].identificationNo.toString());
                       }),
                 )
               ],
@@ -80,68 +83,80 @@ class _RecentlyScholarshipStudentsContainerState
     );
   }
 
-  Widget studentData() {
+  Widget studentData(String studentName, String studentId) {
     return Column(
       children: [
         Row(
+          mainAxisAlignment:MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              radius: 22,
-              backgroundImage: NetworkImage(
-                  "https://media.istockphoto.com/id/1351018006/photo/smiling-male-student-sitting-in-university-classroom.jpg?s=612x612&w=0&k=20&c=G9doLib_ILUijluTSD5hstZBWqHHIcw4dBHhQcs-ON4="),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Column(
+            Row(
               children: [
+                CircleAvatar(
+                  radius: 22,
+                  backgroundImage: NetworkImage(
+                      "https://media.istockphoto.com/id/1351018006/photo/smiling-male-student-sitting-in-university-classroom.jpg?s=612x612&w=0&k=20&c=G9doLib_ILUijluTSD5hstZBWqHHIcw4dBHhQcs-ON4="),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
                 Text(
-                  "Swagata Pal",
+                  studentName,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
                       color: AppColors.colorBlack),
                 ),
-                Text(
-                  "ID 1234565",
+              ],
+            ),
+
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: AppColors.progressBarColor,
+              ),
+
+              child: Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                child: Text(
+                  studentId,
                   style: TextStyle(
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                       fontSize: 10,
-                      color: AppColors.gray7),
+                      color: AppColors.white),
                 ),
-              ],
+              ),
             ),
-            SizedBox(
-              width: ScreenUtils().screenWidth(context) * 0.2,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.check_box,
-                  color: AppColors.blue,
-                  size: 20,
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Column(children: [
-                  Text(
-                    "VII - A",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                        color: AppColors.blue),
-                  ),
-                  Text(
-                    "Class 7",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10,
-                        color: AppColors.gray7),
-                  ),
-                ])
-              ],
-            )
+            // SizedBox(
+            //   width: ScreenUtils().screenWidth(context) * 0.2,
+            // ),
+            // Row(
+            //   children: [
+            //     Icon(
+            //       Icons.check_box,
+            //       color: AppColors.blue,
+            //       size: 20,
+            //     ),
+            //     SizedBox(
+            //       width: 5,
+            //     ),
+            //     // Column(children: [
+            //     //   Text(
+            //     //     "VII - A",
+            //     //     style: TextStyle(
+            //     //         fontWeight: FontWeight.w600,
+            //     //         fontSize: 14,
+            //     //         color: AppColors.blue),
+            //     //   ),
+            //     //   Text(
+            //     //     "Class 7",
+            //     //     style: TextStyle(
+            //     //         fontWeight: FontWeight.w400,
+            //     //         fontSize: 10,
+            //     //         color: AppColors.gray7),
+            //     //   ),
+            //     // ])
+            //   ],
+            // )
           ],
         ),
         Divider(

@@ -7,6 +7,7 @@ import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
 import 'package:college_super_admin_app/features/dashboard_module/data/dashboard_usecase.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/recently_scholarship_student.dart';
 import 'package:college_super_admin_app/features/dashboard_module/widgets/recently_scholarship_students_container.dart';
 import 'package:college_super_admin_app/features/dashboard_module/widgets/scholarship_trends_graph.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -28,6 +29,8 @@ class _ScholarshipTrendsContainerState
 
   List<FlSpot> lineSpots = [];
   List<String> yearLabels = [];
+
+  List<RecentlyScholarshipStudent> studentList = [];
 
   @override
   void initState() {
@@ -56,7 +59,9 @@ class _ScholarshipTrendsContainerState
                 ),
               ),
               SizedBox(height: ScreenUtils().screenHeight(context) * 0.015),
-              RecentlyScholarshipStudentsContainer(),
+              RecentlyScholarshipStudentsContainer(studentList: studentList,
+
+              ),
               SizedBox(height: ScreenUtils().screenHeight(context) * 0.03),
             ],
           );
@@ -68,6 +73,10 @@ class _ScholarshipTrendsContainerState
     Resource resource = await _dashboardUsecase.dashboardData(requestData: {});
 
     if (resource.status == STATUS.SUCCESS) {
+      studentList = (resource.data["scholarshipStudent"] as List)
+          .map((x) => RecentlyScholarshipStudent.fromJson(x))
+          .toList();
+
       final response = resource.data as Map<String, dynamic>;
       final scholarshipGraph = response['scholarshipGraph'];
 

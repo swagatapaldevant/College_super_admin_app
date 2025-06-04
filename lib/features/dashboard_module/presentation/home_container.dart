@@ -142,7 +142,7 @@ class _HomeContainerState extends State<HomeContainer> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Upcoming Event : ",
+                              "Upcoming Notice : ",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 13,
@@ -151,7 +151,11 @@ class _HomeContainerState extends State<HomeContainer> {
                             ),
                             Divider(),
                             Expanded(
-                              child: ListView.builder(
+                              child:noticeList.isEmpty?Text("No notices are present now", style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.white
+                              ),): ListView.builder(
                                   itemCount: noticeList.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {

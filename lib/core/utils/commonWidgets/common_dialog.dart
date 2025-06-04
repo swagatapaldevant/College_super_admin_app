@@ -68,10 +68,10 @@ CommonDialog(
                   Text(
                     title,
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontFamily: "comic_neue",
+                      fontFamily: "Poppins",
                           color: AppColors.colorBlack,
                           fontSize: ScreenUtils().screenWidth(context) * 0.05,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -85,11 +85,11 @@ CommonDialog(
                       msg,
                       style:
                           Theme.of(context).textTheme.displayMedium?.copyWith(
-                              fontFamily: "comic_neue",
+                              fontFamily: "Poppins",
                                 color: AppColors.darkBlue,
                                 fontSize:
                                     ScreenUtils().screenWidth(context) * 0.04,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w500,
                               ),
                       maxLines: 7,
                       textAlign: TextAlign.center,
