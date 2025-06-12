@@ -37,6 +37,7 @@ class FeesReceivedCurrentBalanceWidget extends StatelessWidget {
                   Text("₹ 42,56,0000.00", style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
+                      fontFamily: "Poppins",
                     color: AppColors.colorBlack
                   ),),
                   SizedBox(height: ScreenUtils().screenHeight(context)*0.001,),
@@ -44,6 +45,7 @@ class FeesReceivedCurrentBalanceWidget extends StatelessWidget {
                   Text("Current balance", style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
+                      fontFamily: "Poppins",
                       color: AppColors.colorBlack
                   ),)
                 ],
@@ -56,6 +58,7 @@ class FeesReceivedCurrentBalanceWidget extends StatelessWidget {
                 Text("Average from last month", style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins",
                     color: AppColors.colorBlack
                 ),),
                 SizedBox(height: 5,),
@@ -64,12 +67,14 @@ class FeesReceivedCurrentBalanceWidget extends StatelessWidget {
                     text: '↑ 5%',
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
+                        fontFamily: "Poppins",
                         color: AppColors.progressBarColor,
                         fontSize: 12
                     ),
                     children: const <TextSpan>[
                       TextSpan(text: ' than last month', style: TextStyle(
                           fontWeight: FontWeight.w300,
+                          fontFamily: "Poppins",
                           color: AppColors.gray7,
                           fontSize: 10
                       ),),

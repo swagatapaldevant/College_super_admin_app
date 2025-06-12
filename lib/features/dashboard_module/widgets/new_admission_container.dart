@@ -40,6 +40,7 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
                   "New Admission",
                   style: TextStyle(
                       fontSize: 14,
+                      fontFamily: "Poppins",
                       fontWeight: FontWeight.w600,
                       color: AppColors.colorBlack),
                 ),
@@ -47,6 +48,7 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
                   "You have new ${widget.studentList.length} admission",
                   style: TextStyle(
                       fontSize: 13,
+                      fontFamily: "Poppins",
                       fontWeight: FontWeight.w400,
                       color: AppColors.gray7),
                 ),
@@ -119,11 +121,13 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
                   Text(studentName, style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 12,
+                      fontFamily: "Poppins",
                     color: AppColors.colorBlack
                   ),),
                   Text(studentId, style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 10,
+                      fontFamily: "Poppins",
                       color: AppColors.gray7
                   ),),
                 ],
@@ -146,11 +150,13 @@ class _NewAdmissionContainerState extends State<NewAdmissionContainer> {
                     Text(gender, style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 10,
+                        fontFamily: "Poppins",
                         color: AppColors.gray7
                     ),),
                     Text(date, style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 10,
+                        fontFamily: "Poppins",
                         color: AppColors.gray7
                     ),),
                   ]

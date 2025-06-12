@@ -41,13 +41,15 @@ class DashboardSmallProgressSectionContainer extends StatelessWidget {
                 Text(contentValue, style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.colorBlack
+                  color: AppColors.colorBlack,
+                  fontFamily: "Poppins",
                 ),),
 
                 Text(content, style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.colorBlack
+                    color: AppColors.colorBlack,
+                  fontFamily: "Poppins",
                 ),),
               ],
             )

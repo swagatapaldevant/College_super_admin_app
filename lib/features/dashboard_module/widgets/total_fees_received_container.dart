@@ -51,6 +51,7 @@ class _TotalFeesReceivedContainerState
             Text("Total fees received", style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
+                fontFamily: "Poppins",
               color: AppColors.colorBlack
             ),),
             SizedBox(height: 10,),
@@ -93,12 +94,14 @@ class _TotalFeesReceivedContainerState
             Text(text1, style: TextStyle(
               fontWeight: FontWeight.w500,
               color: AppColors.colorBlack,
+                fontFamily: "Poppins",
               fontSize: 12
             ),),
 
             Text(text2, style: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: AppColors.gray7,
+                fontFamily: "Poppins",
                 fontSize: 11
             ),)
           ],

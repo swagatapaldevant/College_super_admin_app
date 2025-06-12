@@ -144,6 +144,7 @@ class _SigninScreenState extends State<SigninScreen>
                               "Remember me",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
+                                  fontFamily: "Poppins",
                                   color: AppColors.colorBlack,
                                   fontSize: 14),
                             ),
@@ -155,6 +156,7 @@ class _SigninScreenState extends State<SigninScreen>
                                 style: TextStyle(
                                     color: AppColors.gray7,
                                     fontSize: 14,
+                                    fontFamily: "Poppins",
                                     fontWeight: FontWeight.w600),
                               ),
                             )
@@ -247,7 +249,7 @@ class _SigninScreenState extends State<SigninScreen>
       _pref.setUserName(
           resource.data['first_name'] +" "+ resource.data['last_name']);
       if (resource.data['user_type_id'] == 1) {
-        Navigator.pushNamed(context, "/DashboardScreen");
+        Navigator.pushNamed(context, "/BottomNavbar");
       }
       else{
         CommonUtils().flutterSnackBar(

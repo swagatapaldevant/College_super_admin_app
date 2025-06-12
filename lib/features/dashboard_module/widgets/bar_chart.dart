@@ -103,6 +103,7 @@ class _BarChartDetailsState extends State<BarChartDetails> {
                         widget.dates[index],
                         style:  TextStyle(
                           fontSize: 10,
+                            fontFamily: "Poppins",
                           fontWeight: FontWeight.w500,
                           color: AppColors.gray7
                         ),
@@ -138,6 +139,7 @@ class _BarChartDetailsState extends State<BarChartDetails> {
                   rod.toY.toStringAsFixed(1),
                   const TextStyle(
                     color: Colors.white,
+                    fontFamily: "Poppins",
                     fontWeight: FontWeight.bold,
                   ),
                 );

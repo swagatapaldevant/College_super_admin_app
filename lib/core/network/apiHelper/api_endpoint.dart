@@ -20,7 +20,9 @@ class ApiEndPoint{
   static const dashboard =  "$baseurl/app_dashboard";
   static const getCourse =  "$baseurl/getCourse";
   static const courseRevenueByCourse =  "$baseurl/course_wise_collection";
-
+  static const getSession =  "$baseurl/getSession";
+  static const getErpSettings =  "$baseurl/getErpSettings";
+  static const dueCalculationApi =  "$baseurl/due_by_session";
 
 
 }

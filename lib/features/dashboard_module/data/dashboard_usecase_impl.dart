@@ -59,4 +59,76 @@ class DashboardUsecaseImplementation extends DashboardUsecase {
       return resource;
     }
   }
+
+
+  @override
+  Future<Resource> getSessionList({required Map<String, dynamic> requestData,}) async {
+    String token = await _pref.getUserAuthToken();
+    Map<String, String> header = {
+      "Authorization": "Bearer $token"
+      // "Authorization": "Bearer 1189|vKS1QsYNWLURVL6yQbRVx6cYpwlXfIkKHcTYlyw672146e7a"
+    };
+    print("Bearer$token");
+    Resource resource = await _apiClient.getRequest(
+        url: ApiEndPoint.getSession, header: header, requestData: requestData);
+    if (resource.status == STATUS.SUCCESS) {
+      return resource;
+    } else {
+      return resource;
+    }
+  }
+
+  @override
+  Future<Resource> getErpSettings({required Map<String, dynamic> requestData,}) async {
+    String token = await _pref.getUserAuthToken();
+    Map<String, String> header = {
+      "Authorization": "Bearer $token"
+      // "Authorization": "Bearer 1189|vKS1QsYNWLURVL6yQbRVx6cYpwlXfIkKHcTYlyw672146e7a"
+    };
+    print("Bearer$token");
+    Resource resource = await _apiClient.getRequest(
+        url: ApiEndPoint.getErpSettings, header: header, requestData: requestData);
+    if (resource.status == STATUS.SUCCESS) {
+      return resource;
+    } else {
+      return resource;
+    }
+  }
+
+
+  @override
+  Future<Resource> getAllDueData({required Map<String, dynamic> requestData,}) async {
+    String token = await _pref.getUserAuthToken();
+    Map<String, String> header = {
+      "Authorization": "Bearer $token"
+      // "Authorization": "Bearer 1189|vKS1QsYNWLURVL6yQbRVx6cYpwlXfIkKHcTYlyw672146e7a"
+    };
+    print("Bearer$token");
+    Resource resource = await _apiClient.postRequest(
+        url: ApiEndPoint.dueCalculationApi, header: header, requestData: requestData);
+    if (resource.status == STATUS.SUCCESS) {
+      return resource;
+    } else {
+      return resource;
+    }
+  }
+
+  @override
+  Future<Resource> getAllCourseDetailsData({required Map<String, dynamic> requestData,}) async {
+    String token = await _pref.getUserAuthToken();
+    Map<String, String> header = {
+      "Authorization": "Bearer $token"
+      // "Authorization": "Bearer 1189|vKS1QsYNWLURVL6yQbRVx6cYpwlXfIkKHcTYlyw672146e7a"
+    };
+    print("Bearer$token");
+    Resource resource = await _apiClient.postRequest(
+        url: ApiEndPoint.dueCalculationApi, header: header, requestData: requestData);
+    if (resource.status == STATUS.SUCCESS) {
+      return resource;
+    } else {
+      return resource;
+    }
+  }
+
+
 }

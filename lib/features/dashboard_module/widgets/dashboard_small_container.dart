@@ -37,30 +37,34 @@ class DashboardSmallContainer extends StatelessWidget {
                 Text(value, style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: AppColors.colorBlack,
+                    fontFamily: "Poppins",
                   fontSize: 14
                 ),),
                 Text(text1, style: TextStyle(
                     fontWeight: FontWeight.w400,
                     color: AppColors.colorBlack,
+                    fontFamily: "Poppins",
                     fontSize: 12
                 ),),
-                RichText(
-                  text: TextSpan(
-                    text: '$changeValue%',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.progressBarColor,
-                        fontSize: 11
-                    ),
-                    children: const <TextSpan>[
-                      TextSpan(text: ' than last month', style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: AppColors.gray7,
-                          fontSize: 10
-                      ),),
-                    ],
-                  ),
-                )
+                // RichText(
+                //   text: TextSpan(
+                //     text: '$changeValue%',
+                //     style: TextStyle(
+                //         fontWeight: FontWeight.w400,
+                //         color: AppColors.progressBarColor,
+                //         fontFamily: "Poppins",
+                //         fontSize: 11
+                //     ),
+                //     children: const <TextSpan>[
+                //       TextSpan(text: ' than last month', style: TextStyle(
+                //           fontWeight: FontWeight.w300,
+                //           color: AppColors.gray7,
+                //           fontFamily: "Poppins",
+                //           fontSize: 10
+                //       ),),
+                //     ],
+                //   ),
+                // )
 
 
               ],

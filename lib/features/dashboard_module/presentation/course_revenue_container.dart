@@ -193,6 +193,7 @@ class _CourseRevenueContainerState extends State<CourseRevenueContainer> {
                                         '$month\n₹${spot.y.toInt()}',
                                         const TextStyle(
                                             color: Colors.white,
+                                            fontFamily: "Poppins",
                                             fontWeight: FontWeight.bold),
                                       );
                                     }).toList();
@@ -206,12 +207,21 @@ class _CourseRevenueContainerState extends State<CourseRevenueContainer> {
                         )
                       : Center(
                           child: Text(
-                          'Select a course to view revenue chart',
+                          'Select a course to view monthly revenue chart',
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
+                              fontFamily: "Poppins",
                               color: AppColors.colorBlack),
                         )),
+                  SizedBox(height: ScreenUtils().screenHeight(context) * 0.02),
+                  lineSpots.isNotEmpty? Text("Monthly collection graph ", style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: "Poppins",
+                    color: AppColors.colorBlack,
+                    fontWeight: FontWeight.w500
+
+                  ),):SizedBox.shrink()
                 ],
               ),
             ),

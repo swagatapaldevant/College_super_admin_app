@@ -50,7 +50,7 @@ class _CustomDropdownForAttendanceState extends State<CustomDropdownForAttendanc
           hint: Text(
             widget.placeHolderText,
             style: TextStyle(
-              color: widget.isDisabled ? Colors.grey : AppColors.colorPrimaryText,
+              color:  AppColors.colorBlack,
               fontSize: screenWidth * 0.032,
               fontWeight: FontWeight.w500,
               fontFamily: "Poppins",

@@ -189,6 +189,7 @@ class ScholarshipTrendsGraph extends StatelessWidget {
               "Scholarship trends details",
               style: TextStyle(
                 fontSize: 14,
+                fontFamily: "Poppins",
                 fontWeight: FontWeight.w600,
                 color: AppColors.colorBlack,
               ),
@@ -235,6 +236,7 @@ class ScholarshipTrendsGraph extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 10,
                       color: Colors.black,
+                      fontFamily: "Poppins",
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -285,6 +287,7 @@ class ScholarshipTrendsGraph extends StatelessWidget {
                 '$year\n${spot.y.toStringAsFixed(1)}',
                 const TextStyle(
                   color: Colors.white,
+                  fontFamily: "Poppins",
                   fontWeight: FontWeight.bold,
                 ),
               );

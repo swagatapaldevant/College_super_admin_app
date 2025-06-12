@@ -120,6 +120,7 @@ class _SplashScreenState extends State<SplashScreen>
                     style: TextStyle(
                       color: AppColors.darkBlue,
                       fontSize: 28,
+
                       fontWeight: FontWeight.w600,
                       letterSpacing: 1.2,
                       fontFamily: "Poppins"
@@ -142,7 +143,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     try {
       if (token.length > 10 && loginStatus) {
-        Navigator.pushReplacementNamed(context, "/DashboardScreen");
+        Navigator.pushReplacementNamed(context, "/BottomNavbar");
       }
       else{
         Navigator.pushReplacementNamed(context, "/SigninScreen");

@@ -66,6 +66,7 @@ class _AdmissionOnSheetContainerState extends State<AdmissionOnSheetContainer> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 12,
+                      fontFamily: "Poppins",
                       fontWeight: FontWeight.w500,
                       color: AppColors.gray7),
                 ),
@@ -75,6 +76,7 @@ class _AdmissionOnSheetContainerState extends State<AdmissionOnSheetContainer> {
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins",
                       color: AppColors.blue),
                 ),
                 SizedBox(

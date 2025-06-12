@@ -115,6 +115,7 @@ class _HomeContainerState extends State<HomeContainer> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 14,
+                                  fontFamily: "Poppins",
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.white),
                             ),
@@ -146,6 +147,7 @@ class _HomeContainerState extends State<HomeContainer> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 13,
+                                  fontFamily: "Poppins",
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.white),
                             ),
@@ -154,6 +156,7 @@ class _HomeContainerState extends State<HomeContainer> {
                               child:noticeList.isEmpty?Text("No notices are present now", style: TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w400,
+                                  fontFamily: "Poppins",
                                   color: AppColors.white
                               ),): ListView.builder(
                                   itemCount: noticeList.length,
@@ -166,6 +169,7 @@ class _HomeContainerState extends State<HomeContainer> {
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             fontSize: 11,
+                                            fontFamily: "Poppins",
                                             fontWeight: FontWeight.w400,
                                             color: AppColors.white),
                                       ),

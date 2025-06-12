@@ -1,7 +1,11 @@
 import 'dart:ui';
 
 import 'package:college_super_admin_app/features/auth_module/presentation/signin_screen.dart';
+import 'package:college_super_admin_app/features/dashboard_module/models/semester_details_model.dart';
+import 'package:college_super_admin_app/features/dashboard_module/presentation/buttom_navigation.dart';
+import 'package:college_super_admin_app/features/dashboard_module/presentation/course_wise_due%20report_screen.dart';
 import 'package:college_super_admin_app/features/dashboard_module/presentation/dashboard_screen.dart';
+import 'package:college_super_admin_app/features/dashboard_module/presentation/student_details_due_screen.dart';
 import 'package:college_super_admin_app/features/report_module/presentation/admission_report_screen.dart';
 import 'package:college_super_admin_app/features/report_module/presentation/attendance_report_screen.dart';
 import 'package:college_super_admin_app/features/report_module/presentation/examination_screen.dart';
@@ -26,6 +30,9 @@ class RouteGenerator{
   static const kFeesCollectionReportScreen = "/FeesCollectionReportScreen";
   static const kFeesDueReportScreen = "/FeesDueReportScreen";
   static const kRevenueReportScreen = "/RevenueReportScreen";
+  static const kBottomNavbar = "/BottomNavbar";
+  static const kCourseWiseDueReportScreen = "/CourseWiseDueReportScreen";
+  static const kStudentDetailsDueScreen = "/StudentDetailsDueScreen";
 
 
 
@@ -46,6 +53,12 @@ class RouteGenerator{
         return _animatedPageRoute(SigninScreen());
       case kDashboardScreen:
         return _animatedPageRoute(DashboardScreen());
+      case kBottomNavbar:
+        return _animatedPageRoute(BottomNavbar());
+      case kCourseWiseDueReportScreen:
+        return _animatedPageRoute(CourseWiseDueReportScreen(sessionId: args as int,));
+      case kStudentDetailsDueScreen:
+        return _animatedPageRoute(StudentDetailsDueScreen(semesterDetailsData: args as SemesterDetailsByCourseModel,));
 
 
 

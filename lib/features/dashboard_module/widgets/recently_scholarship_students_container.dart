@@ -104,6 +104,7 @@ class _RecentlyScholarshipStudentsContainerState
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
+                      fontFamily: "Poppins",
                       color: AppColors.colorBlack),
                 ),
               ],
@@ -122,6 +123,7 @@ class _RecentlyScholarshipStudentsContainerState
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 10,
+                      fontFamily: "Poppins",
                       color: AppColors.white),
                 ),
               ),

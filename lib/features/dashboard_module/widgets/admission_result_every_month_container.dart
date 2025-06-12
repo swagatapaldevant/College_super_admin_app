@@ -52,6 +52,7 @@ class _AdmissionResultEveryMonthContainerState
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
+                  fontFamily: "Poppins",
                   color: AppColors.colorBlack),
             ),
             SizedBox(
@@ -201,6 +202,7 @@ class _AdmissionResultBarChartDetailsState
                         widget.weekDays[value.toInt()],
                         style: const TextStyle(
                           fontSize: 10,
+                          fontFamily: "Poppins",
                           fontWeight: FontWeight.w500,
                           color: Colors.black87,
                         ),
@@ -236,6 +238,7 @@ class _AdmissionResultBarChartDetailsState
                   rod.toY.toStringAsFixed(1),
                   const TextStyle(
                     color: Colors.white,
+                    fontFamily: "Poppins",
                     fontWeight: FontWeight.bold,
                   ),
                 );

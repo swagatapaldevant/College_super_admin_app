@@ -29,11 +29,13 @@ class HeaderSection extends StatelessWidget {
                 Text(name, style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins",
                   color: AppColors.colorBlack
                 ),),
 
                 Text("Super admin", style: TextStyle(
                     fontSize: 10,
+                    fontFamily: "Poppins",
                     fontWeight: FontWeight.w400,
                     color: AppColors.gray7
                 ),)

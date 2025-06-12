@@ -47,6 +47,7 @@ class _FullDetailsFeesCollectionContainerState
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
+                  fontFamily: "Poppins",
                   color: AppColors.colorBlack),
             ),
             SizedBox(
@@ -83,6 +84,7 @@ class _FullDetailsFeesCollectionContainerState
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
+                                            fontFamily: "Poppins",
                                             color: AppColors.colorBlack),
                                       ),
                                       Text(
@@ -90,6 +92,7 @@ class _FullDetailsFeesCollectionContainerState
                                         style: TextStyle(
                                             fontWeight: FontWeight.w500,
                                             fontSize: 10,
+                                            fontFamily: "Poppins",
                                             color: AppColors.gray7),
                                       ),
                                     ],
@@ -120,6 +123,7 @@ class _FullDetailsFeesCollectionContainerState
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 10,
+                                    fontFamily: "Poppins",
                                     color: AppColors.colorBlack),
                                 children:  <TextSpan>[
                                   TextSpan(
@@ -127,6 +131,7 @@ class _FullDetailsFeesCollectionContainerState
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 10,
+                                          fontFamily: "Poppins",
                                           color: AppColors.gray7)),
                                 ],
                               ),
@@ -135,6 +140,7 @@ class _FullDetailsFeesCollectionContainerState
                               '₹ ${widget.studentList[index].amount.toString()}',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
+                                  fontFamily: "Poppins",
                                   fontSize: 11,
                                   color: AppColors.colorBlack),
                             )

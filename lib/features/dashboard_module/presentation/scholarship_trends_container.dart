@@ -54,6 +54,7 @@ class _ScholarshipTrendsContainerState
                 "Recently Scholarship Students",
                 style: TextStyle(
                   fontSize: 14,
+                  fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
                   color: AppColors.colorBlack,
                 ),
