@@ -156,8 +156,7 @@ class _DueReportDashboardScreenDetailsState
                             final directory = await getTemporaryDirectory();
                             final imagePath = await File('${directory.path}/screenshot.png').create();
                             await imagePath.writeAsBytes(image);
-
-                            Share.shareXFiles([XFile(imagePath.path)], text: '');
+                            Share.shareXFiles([XFile(imagePath.path)], text: '.');
                           }
                         },
                         child: CircleAvatar(
