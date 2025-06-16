@@ -23,6 +23,7 @@ class ApiEndPoint{
   static const getSession =  "$baseurl/getSession";
   static const getErpSettings =  "$baseurl/getErpSettings";
   static const dueCalculationApi =  "$baseurl/due_by_session";
+  static const collectionBySession =  "$baseurl/collection_by_session";
 
 
 }

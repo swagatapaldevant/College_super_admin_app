@@ -9,6 +9,7 @@ abstract class DashboardUsecase{
   Future<Resource> getErpSettings({required Map<String, dynamic> requestData});
   Future<Resource> getAllDueData({required Map<String, dynamic> requestData});
   Future<Resource> getAllCourseDetailsData({required Map<String, dynamic> requestData});
+  Future<Resource> getAllCollectionBySession({required Map<String, dynamic> requestData});
 
 
 

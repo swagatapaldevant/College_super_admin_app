@@ -1,5 +1,6 @@
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
 import 'package:college_super_admin_app/core/utils/helper/app_dimensions.dart';
+import 'package:college_super_admin_app/features/dashboard_module/fees_collection_report_module/presentation/fees_collection_report_screen_date_wise.dart';
 import 'package:college_super_admin_app/features/dashboard_module/presentation/due_report_dashboard_screen_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,6 +33,7 @@ class _BottomNavbarState extends State<BottomNavbar>
       //   radius: 12,
       // ),
       DueReportDashboardScreenDetails(),
+      FeesCollectionReportScreenDateWise(),
       DashboardScreen()
     ];
 
@@ -130,8 +132,12 @@ class _BottomNavbarState extends State<BottomNavbar>
             ),
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined, size: 30),
-                label: 'Dashboard',
+                icon: Icon(Icons.report, size: 30),
+                label: 'Due Report',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.report_problem, size: 30),
+                label: 'Fees Collection Report',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.menu_rounded, size: 30),

@@ -129,6 +129,22 @@ class DashboardUsecaseImplementation extends DashboardUsecase {
       return resource;
     }
   }
+@override
+  Future<Resource> getAllCollectionBySession({required Map<String, dynamic> requestData,}) async {
+    String token = await _pref.getUserAuthToken();
+    Map<String, String> header = {
+      "Authorization": "Bearer $token"
+      // "Authorization": "Bearer 1189|vKS1QsYNWLURVL6yQbRVx6cYpwlXfIkKHcTYlyw672146e7a"
+    };
+    print("Bearer$token");
+    Resource resource = await _apiClient.postRequest(
+        url: ApiEndPoint.collectionBySession, header: header, requestData: requestData);
+    if (resource.status == STATUS.SUCCESS) {
+      return resource;
+    } else {
+      return resource;
+    }
+  }
 
 
 }

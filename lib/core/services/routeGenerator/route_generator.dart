@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:college_super_admin_app/features/auth_module/presentation/signin_screen.dart';
+import 'package:college_super_admin_app/features/dashboard_module/fees_collection_report_module/presentation/fees_collection_report_by_course.dart';
+import 'package:college_super_admin_app/features/dashboard_module/fees_collection_report_module/presentation/fees_collection_report_students.dart';
 import 'package:college_super_admin_app/features/dashboard_module/models/semester_details_model.dart';
 import 'package:college_super_admin_app/features/dashboard_module/presentation/buttom_navigation.dart';
 import 'package:college_super_admin_app/features/dashboard_module/presentation/course_wise_due%20report_screen.dart';
@@ -33,6 +35,8 @@ class RouteGenerator{
   static const kBottomNavbar = "/BottomNavbar";
   static const kCourseWiseDueReportScreen = "/CourseWiseDueReportScreen";
   static const kStudentDetailsDueScreen = "/StudentDetailsDueScreen";
+  static const kFeesCollectionReportByCourse = "/FeesCollectionReportByCourse";
+  static const kFeesCollectionReportStudents = "/FeesCollectionReportStudents";
 
 
 
@@ -55,6 +59,15 @@ class RouteGenerator{
         return _animatedPageRoute(DashboardScreen());
       case kBottomNavbar:
         return _animatedPageRoute(BottomNavbar());
+       case kFeesCollectionReportStudents:
+         final args = settings.arguments as Map<String, dynamic>;
+        return _animatedPageRoute(FeesCollectionReportStudents(
+          paymentDate: args['paymentDate'],
+          courseId: args['course_id'],
+          semesterId: args['semester_id'],
+        ));
+       case kFeesCollectionReportByCourse:
+        return _animatedPageRoute(FeesCollectionReportByCourse(date: args as String,));
       case kCourseWiseDueReportScreen:
         return _animatedPageRoute(CourseWiseDueReportScreen(sessionId: args as int,));
       case kStudentDetailsDueScreen:

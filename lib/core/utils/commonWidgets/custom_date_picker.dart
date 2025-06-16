@@ -38,6 +38,7 @@ class _CustomDatePickerFieldState extends State<CustomDatePickerField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: ScreenUtils().screenWidth(context)*0.44,
       padding: EdgeInsets.symmetric(horizontal: ScreenUtils().screenWidth(context) * 0.05),
       decoration: BoxDecoration(
         color: Color(0xFFF5F5FA), // Light background similar to the image
@@ -57,7 +58,7 @@ class _CustomDatePickerFieldState extends State<CustomDatePickerField> {
         textAlignVertical: TextAlignVertical.center,
         style: TextStyle(
             color: AppColors.colorBlack,
-            fontSize: ScreenUtils().screenWidth(context)*0.035,
+            fontSize: ScreenUtils().screenWidth(context)*0.03,
             fontFamily: "Poppins",
             fontWeight: FontWeight.w500
         ),

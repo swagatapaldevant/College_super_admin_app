@@ -91,14 +91,14 @@ class _RecentlyScholarshipStudentsContainerState
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  radius: 22,
-                  backgroundImage: NetworkImage(
-                      "https://media.istockphoto.com/id/1351018006/photo/smiling-male-student-sitting-in-university-classroom.jpg?s=612x612&w=0&k=20&c=G9doLib_ILUijluTSD5hstZBWqHHIcw4dBHhQcs-ON4="),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
+                // CircleAvatar(
+                //   radius: 22,
+                //   backgroundImage: NetworkImage(
+                //       "https://media.istockphoto.com/id/1351018006/photo/smiling-male-student-sitting-in-university-classroom.jpg?s=612x612&w=0&k=20&c=G9doLib_ILUijluTSD5hstZBWqHHIcw4dBHhQcs-ON4="),
+                // ),
+                // SizedBox(
+                //   width: 10,
+                // ),
                 Text(
                   studentName,
                   style: TextStyle(

@@ -86,58 +86,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  // CircleAvatar(
-                  //     backgroundColor: AppColors.gray2,
-                  //     child: Icon(
-                  //       Icons.notifications_active,
-                  //       color: AppColors.gray7,
-                  //     )),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  HeaderSection(imgUrl: imgUrl, name: userNme,),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Bounceable(
-                    onTap: (){
-                      CommonDialog(
-                          icon: Icons.logout,
-                          title: "Log Out",
-                          msg:
-                          "You are about to logout of your account. Please confirm.",
-                          activeButtonLabel: "Log Out",
-                          context: context,
-                          activeButtonOnClicked: () {
-                            _pref.clearOnLogout();
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              "/SigninScreen",
-                                  (Route<dynamic> route) =>
-                              false, // Removes all previous routes
-                            );
-                          });
-                    },
-                    child: CircleAvatar(
-                        backgroundColor: AppColors.gray2,
-                        child: Icon(
-                          Icons.logout,
-                          color: AppColors.darkBlue,
-                        )),
-                  ),
-                ],
-              ),
-              Text(
-                "Dashboard",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "Poppins",
-                    color: AppColors.colorBlack),
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     // CircleAvatar(
+              //     //     backgroundColor: AppColors.gray2,
+              //     //     child: Icon(
+              //     //       Icons.notifications_active,
+              //     //       color: AppColors.gray7,
+              //     //     )),
+              //     SizedBox(
+              //       width: 8,
+              //     ),
+              //     HeaderSection(imgUrl: imgUrl, name: userNme,),
+              //     SizedBox(
+              //       width: 8,
+              //     ),
+              //     Bounceable(
+              //       onTap: (){
+              //         CommonDialog(
+              //             icon: Icons.logout,
+              //             title: "Log Out",
+              //             msg:
+              //             "You are about to logout of your account. Please confirm.",
+              //             activeButtonLabel: "Log Out",
+              //             context: context,
+              //             activeButtonOnClicked: () {
+              //               _pref.clearOnLogout();
+              //               Navigator.pushNamedAndRemoveUntil(
+              //                 context,
+              //                 "/SigninScreen",
+              //                     (Route<dynamic> route) =>
+              //                 false, // Removes all previous routes
+              //               );
+              //             });
+              //       },
+              //       child: CircleAvatar(
+              //           backgroundColor: AppColors.gray2,
+              //           child: Icon(
+              //             Icons.logout,
+              //             color: AppColors.darkBlue,
+              //           )),
+              //     ),
+              //   ],
+              // ),
+              SizedBox(height: ScreenUtils().screenHeight(context)*0.01,),
               Text(
                 "Hi, Welcome back",
                 style: TextStyle(
@@ -146,7 +139,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     fontFamily: "Poppins",
                     color: AppColors.gray7),
               ),
-              SizedBox(height: ScreenUtils().screenHeight(context)*0.01,),
+              Text(
+                "Current Year Dashboard",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "Poppins",
+                    color: AppColors.colorBlack),
+              ),
+
+              SizedBox(height: ScreenUtils().screenHeight(context)*0.02,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

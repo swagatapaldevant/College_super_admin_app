@@ -221,14 +221,6 @@ class _DueReportDashboardScreenDetailsState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Dashboard",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.colorBlack,
-                                        fontFamily: "Poppins"),
-                                  ),
-                                  Text(
                                     "Hi, Welcome back",
                                     style: TextStyle(
                                         fontSize: 16,
@@ -236,6 +228,15 @@ class _DueReportDashboardScreenDetailsState
                                         color: AppColors.gray7,
                                         fontFamily: "Poppins"),
                                   ),
+                                  Text(
+                                    "Due Report Dashboard",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.colorBlack,
+                                        fontFamily: "Poppins"),
+                                  ),
+
                                 ],
                               ),
                               Container(
