@@ -13,6 +13,7 @@ class PaidDueAmountContainer extends StatelessWidget {
   Function()? onTap;
   final double? textfonsize;
   final double? valuefonsize;
+  final Color? color;
    PaidDueAmountContainer(
       {super.key,
       required this.progressBarColor,
@@ -20,6 +21,7 @@ class PaidDueAmountContainer extends StatelessWidget {
       required this.content,
         this.textfonsize,
         this.valuefonsize,
+         this.color,
       required this.contentValue,
         this.onTap,
       required this.value});
@@ -31,7 +33,7 @@ class PaidDueAmountContainer extends StatelessWidget {
       child: Container(
         width:screenWidth?? ScreenUtils().screenWidth(context) * 0.42,
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: color??AppColors.white,
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
@@ -58,7 +60,7 @@ class PaidDueAmountContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    contentValue,
+                    "₹ $contentValue",
                     style: TextStyle(
                         fontSize:valuefonsize?? 14,
                         fontFamily: "Poppins",

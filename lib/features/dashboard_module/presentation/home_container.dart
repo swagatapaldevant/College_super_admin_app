@@ -95,44 +95,44 @@ class _HomeContainerState extends State<HomeContainer> {
                   height: ScreenUtils().screenHeight(context) * 0.02,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // Container(
+                    //   height: ScreenUtils().screenHeight(context) * 0.14,
+                    //   width: ScreenUtils().screenWidth(context) * 0.4,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(10),
+                    //     color: AppColors.dailyStreakColor,
+                    //   ),
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(10.0),
+                    //     child: Column(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       crossAxisAlignment: CrossAxisAlignment.center,
+                    //       children: [
+                    //         Text(
+                    //           "Auto Generated admission report",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //               fontSize: 14,
+                    //               fontFamily: "Poppins",
+                    //               fontWeight: FontWeight.w500,
+                    //               color: AppColors.white),
+                    //         ),
+                    //         Align(
+                    //             alignment: Alignment.centerRight,
+                    //             child: Icon(
+                    //               Icons.arrow_forward,
+                    //               color: AppColors.white,
+                    //               size: 30,
+                    //             ))
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     Container(
-                      height: ScreenUtils().screenHeight(context) * 0.14,
-                      width: ScreenUtils().screenWidth(context) * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.dailyStreakColor,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Auto Generated admission report",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.white),
-                            ),
-                            Align(
-                                alignment: Alignment.centerRight,
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: AppColors.white,
-                                  size: 30,
-                                ))
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: ScreenUtils().screenHeight(context) * 0.14,
-                      width: ScreenUtils().screenWidth(context) * 0.5,
+                      height: ScreenUtils().screenHeight(context) * 0.2,
+                      width: ScreenUtils().screenWidth(context) *0.8,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.blue,

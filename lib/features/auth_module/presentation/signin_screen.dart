@@ -125,50 +125,50 @@ class _SigninScreenState extends State<SigninScreen>
                         ),
                       ),
 
-                      const SizedBox(height: 12),
-
-                      // Remember me and Forgot Password
-                      _animatedChild(
-                        index: 2,
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: rememberMe,
-                              onChanged: (val) {
-                                setState(() {
-                                  rememberMe = val!;
-                                });
-                              },
-                            ),
-                            const Text(
-                              "Remember me",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "Poppins",
-                                  color: AppColors.colorBlack,
-                                  fontSize: 14),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: () {},
-                              child: const Text(
-                                "Forgot Password ?",
-                                style: TextStyle(
-                                    color: AppColors.gray7,
-                                    fontSize: 14,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                      // const SizedBox(height: 12),
+                      //
+                      // // Remember me and Forgot Password
+                      // _animatedChild(
+                      //   index: 2,
+                      //   child: Row(
+                      //     children: [
+                      //       Checkbox(
+                      //         value: rememberMe,
+                      //         onChanged: (val) {
+                      //           setState(() {
+                      //             rememberMe = val!;
+                      //           });
+                      //         },
+                      //       ),
+                      //       const Text(
+                      //         "Remember me",
+                      //         style: TextStyle(
+                      //             fontWeight: FontWeight.w500,
+                      //             fontFamily: "Poppins",
+                      //             color: AppColors.colorBlack,
+                      //             fontSize: 14),
+                      //       ),
+                      //       const Spacer(),
+                      //       GestureDetector(
+                      //         onTap: () {},
+                      //         child: const Text(
+                      //           "Forgot Password ?",
+                      //           style: TextStyle(
+                      //               color: AppColors.gray7,
+                      //               fontSize: 14,
+                      //               fontFamily: "Poppins",
+                      //               fontWeight: FontWeight.w600),
+                      //         ),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                       SizedBox(
                           height: ScreenUtils().screenHeight(context) * 0.05),
 
                       // Log In Button
                       _animatedChild(
-                          index: 3,
+                          index: 2,
                           child: isLoading
                               ? CircularProgressIndicator(
                                   color: AppColors.blue,

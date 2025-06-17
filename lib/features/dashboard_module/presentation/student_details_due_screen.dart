@@ -163,9 +163,9 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
       child: Row(
         children: [
           _buildTableCell(studentName, flex: 2),
-          _buildTableCell("\$$totalAmount"),
-          _buildTableCell("\$$paidAmount", color: AppColors.progressBarColor),
-          _buildTableCell("\$$dueAmount", color: AppColors.colorTomato),
+          _buildTableCell("₹$totalAmount"),
+          _buildTableCell("₹$paidAmount", color: AppColors.progressBarColor),
+          _buildTableCell("₹$dueAmount", color: AppColors.colorTomato),
         ],
       ),
     );

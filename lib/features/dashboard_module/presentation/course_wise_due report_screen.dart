@@ -140,6 +140,7 @@ class _CourseWiseDueReportScreenState extends State<CourseWiseDueReportScreen> {
                               value: divideStrings(double.parse(result['due_amount'].toString()), double.parse(result['total_amount'].toString())),
                               progressBarColor: AppColors.colorTomato,
                               content: 'Total Due\namount',
+                              color: AppColors.alphabetSafeArea3,
                               contentValue: result['due_amount'].toString(),
                             ),
                           ],

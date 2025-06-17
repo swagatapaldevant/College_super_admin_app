@@ -34,7 +34,7 @@ class _DateWiseCollectionContainerState extends State<DateWiseCollectionContaine
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [AppColors.optionContainer, AppColors.white],
+              colors: [AppColors.white, AppColors.white],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -50,48 +50,51 @@ class _DateWiseCollectionContainerState extends State<DateWiseCollectionContaine
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Column(
+              spacing: 4,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    const Icon(Icons.calendar_today, size: 18, color: AppColors.rewardBg),
-                    const SizedBox(width: 8),
-                    Text(
-                      "${widget.date} (${widget.weekDay})",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                        fontFamily: "Poppins",
-                      ),
-                    ),
-                  ],
+                Text(
+                  widget.date,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.colorBlack,
+                    fontFamily: "Poppins",
+                  ),
                 ),
-                const SizedBox(height: 8),
+                Text(
+                  widget.weekDay,
+                  style:  TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.gray7,
+                    fontFamily: "Poppins",
+                  ),
+                ),
+
                 Row(
                   children: [
-                     Icon(Icons.attach_money, size: 18, color: AppColors.rewardBg),
-                    const SizedBox(width: 8),
                     Text(
                       "Collection: ",
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
                         color: AppColors.darkBlue,
                         fontFamily: "Poppins",
                       ),
                     ),
                     Text(
-                      widget.totalCollection,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
+                     "₹ ${widget.totalCollection}",
+                      style:  TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.colorBlack,
                         fontFamily: "Poppins",
                       ),
                     ),
                   ],
                 ),
+
               ],
             ),
           ),

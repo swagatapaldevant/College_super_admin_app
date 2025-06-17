@@ -215,7 +215,7 @@ class _CourseRevenueContainerState extends State<CourseRevenueContainer> {
                               color: AppColors.colorBlack),
                         )),
                   SizedBox(height: ScreenUtils().screenHeight(context) * 0.02),
-                  lineSpots.isNotEmpty? Text("Monthly collection graph ", style: TextStyle(
+                  lineSpots.isNotEmpty? Text("Monthly course wise collection graph ", style: TextStyle(
                     fontSize: 14,
                     fontFamily: "Poppins",
                     color: AppColors.colorBlack,

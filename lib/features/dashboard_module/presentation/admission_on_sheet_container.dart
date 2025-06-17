@@ -61,24 +61,24 @@ class _AdmissionOnSheetContainerState extends State<AdmissionOnSheetContainer> {
                 SizedBox(
                   height: ScreenUtils().screenHeight(context) * 0.02,
                 ),
-                Text(
-                  'Download full result in pdf ',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.gray7),
-                ),
-                Text(
-                  'Download ',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Poppins",
-                      color: AppColors.blue),
-                ),
+                // Text(
+                //   'Download full result in pdf ',
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //       fontSize: 12,
+                //       fontFamily: "Poppins",
+                //       fontWeight: FontWeight.w500,
+                //       color: AppColors.gray7),
+                // ),
+                // Text(
+                //   'Download ',
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //       fontSize: 12,
+                //       fontWeight: FontWeight.bold,
+                //       fontFamily: "Poppins",
+                //       color: AppColors.blue),
+                // ),
                 SizedBox(
                   height: ScreenUtils().screenHeight(context) * 0.02,
                 ),

@@ -156,7 +156,7 @@ class _FeesCollectionReportStudentsState extends State<FeesCollectionReportStude
       child: Row(
         children: [
           _buildTableCell(studentName, flex: 2),
-          _buildTableCell("\$$totalAmount"),
+          _buildTableCell("₹ $totalAmount"),
           // _buildTableCell("\$$paidAmount", color: AppColors.progressBarColor),
           // _buildTableCell("\$$dueAmount", color: AppColors.colorTomato),
         ],

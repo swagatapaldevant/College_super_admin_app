@@ -48,7 +48,7 @@ class DueReportDashboardContainer extends StatelessWidget {
                     fontFamily: "Poppins",
                     fontSize: fontsize??16
                 ),),
-                Text(value,overflow: TextOverflow.ellipsis,
+                Text("₹ $value",overflow: TextOverflow.ellipsis,
                   softWrap: true, style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: AppColors.colorBlack,

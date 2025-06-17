@@ -121,7 +121,7 @@ class _BottomNavbarState extends State<BottomNavbar>
             selectedItemColor: AppColors.alphabetFunContainer,
             unselectedItemColor: AppColors.gray7,
             selectedFontSize: 14,
-            unselectedFontSize: 14,
+            unselectedFontSize: 12,
             selectedLabelStyle: TextStyle(
               fontFamily: "Roboto",
               fontWeight: FontWeight.w600,
@@ -132,16 +132,16 @@ class _BottomNavbarState extends State<BottomNavbar>
             ),
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.report, size: 30),
-                label: 'Due Report',
+                icon: Icon(Icons.currency_rupee, size: 30),
+                label: 'Fees Due',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.report_problem, size: 30),
-                label: 'Fees Collection Report',
+                icon: Icon(Icons.currency_rupee, size: 30),
+                label: 'Fees Collection',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.menu_rounded, size: 30),
-                label: 'Others',
+                icon: Icon(Icons.dashboard, size: 30),
+                label: 'Current Year Dashboard',
               ),
             ],
           ),

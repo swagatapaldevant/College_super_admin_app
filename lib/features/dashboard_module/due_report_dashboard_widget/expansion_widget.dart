@@ -113,6 +113,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> {
                               value: divideStrings(double.parse(widget.semesterDetailsData?.dueAmount.toString()??""), (double.parse(widget.semesterDetailsData?.totalAmount.toString()??"")-double.parse(widget.semesterDetailsData?.scholarshipAmount.toString()??"")-double.parse(widget.semesterDetailsData?.concessionAmount.toString()??""))),
                               progressBarColor: AppColors.colorTomato,
                               content: 'Total Due\namount',
+                              color: AppColors.alphabetSafeArea3,
                               contentValue: widget.semesterDetailsData?.dueAmount.toString()??"",
                             ),
                           ],

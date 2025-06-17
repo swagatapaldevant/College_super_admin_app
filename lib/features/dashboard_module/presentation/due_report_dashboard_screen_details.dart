@@ -329,6 +329,7 @@ class _DueReportDashboardScreenDetailsState
                                       arguments: currentSessionId);
                                 },
                                 value: divideStrings(dueAmount, totalAmount),
+                                color: AppColors.alphabetSafeArea3,
                                 progressBarColor: AppColors.colorTomato,
                                 content: 'Total Due\namount',
                                 contentValue: dueAmount.toString(),

@@ -17,7 +17,7 @@ class AppColors{
   static const Color welcomeButtonColor = Color(0xFFCE4614);
   static const Color forgotPasswordColor = Color(0xFF313131);
   static const Color dashboardContainerBackgroundColor = Color(0xFF0E6889);
-  static const Color dashboardContainerBorderColor = Color(0xFFD9D9D9);
+  static const Color dashboardContainerBorderColor = Color(0x9390FCEA);
   static const Color exploreCardColor = Color(0xFF459CBC);
   static const Color dailyStreakColor = Color(0xFFE26B1E);
   static const Color navbarItemColor = Color(0xFF0E6889);
@@ -29,6 +29,9 @@ class AppColors{
   static const Color listenSpellBg = Color(0xFFE38E04);
   static const Color rewardBg = Color(0xFF003D73);
   static const Color alphabetSafeArea = Color(0xFF24735E);
+  static const Color alphabetSafeArea1 = Color(0xFF62CCAE);
+  static const Color alphabetSafeArea2 = Color(0xFFA2FDE5);
+  static const Color alphabetSafeArea3 = Color(0xFFB6FAE8);
   static const Color alphabetFunContainer = Color(0xFF005F82);
   static const Color alphabetFunContainer1 = Color(0xFF005F82);
   static const Color alphabetFunContainer2 = Color(0xFF7C3B10);
