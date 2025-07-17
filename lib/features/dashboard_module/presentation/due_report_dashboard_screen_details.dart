@@ -8,6 +8,7 @@ import 'package:college_super_admin_app/core/utils/commonWidgets/common_dialog.d
 import 'package:college_super_admin_app/core/utils/commonWidgets/custom_3d_piechart.dart';
 import 'package:college_super_admin_app/core/utils/commonWidgets/custom_shimmer.dart';
 import 'package:college_super_admin_app/core/utils/constants/app_colors.dart';
+import 'package:college_super_admin_app/core/utils/helper/app_dimensions.dart';
 import 'package:college_super_admin_app/core/utils/helper/common_utils.dart';
 import 'package:college_super_admin_app/core/utils/helper/screen_utils.dart';
 import 'package:college_super_admin_app/features/dashboard_module/data/dashboard_usecase.dart';
@@ -18,6 +19,7 @@ import 'package:college_super_admin_app/features/dashboard_module/widgets/dashbo
 import 'package:college_super_admin_app/features/dashboard_module/widgets/header_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
+import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
@@ -283,95 +285,122 @@ class _DueReportDashboardScreenDetailsState
                           SizedBox(
                               height:
                                   ScreenUtils().screenHeight(context) * 0.02),
-                          DueReportDashboardContainer(
-                            valuefontsize: 12,
-                            iconfontsize: 18,
-                            fontsize: 12,
-                            icon: Icons.monetization_on,
-                            value: totalAmountBeforeDiscount.toString(),
-                            text1: 'Total amount(Before Discount)',
-                            containerWidth:
-                                ScreenUtils().screenWidth(context),
-                          ),
-                          SizedBox(
-                              height:
-                                  ScreenUtils().screenHeight(context) * 0.01),
-                          DueReportDashboardContainer(
-                            valuefontsize: 12,
-                            iconfontsize: 18,
-                            fontsize: 12,
-                            icon: Icons.monetization_on,
-                            value: totalAmount.toString(),
-                            text1: 'Total amount(After discount)',
-                            containerWidth:
-                                ScreenUtils().screenWidth(context),
-                          ),
-                          SizedBox(
-                              height:
-                                  ScreenUtils().screenHeight(context) * 0.02),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                          dueAmount == 0?
+                          Center(
+                            child: Column(
+                              children: [
+                                Lottie.asset("assets/animation/no_data.json",
+                                    height: AppDimensions.screenHeight*0.2,
+                                  width: AppDimensions.screenWidth*0.7
+                                ),
+                                SizedBox(height: AppDimensions.screenHeight*0.03,),
+                                Text("No data found in this year", style: TextStyle(
+                                    color: AppColors.colorBlack,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Poppins"
+                                ),)
+                              ],
+                            ),
+                          )
+
+                          //Center(child: Text("No due amount in this session"))
+
+                              :
+                          Column(
                             children: [
-                              PaidDueAmountContainer(
-                                textfonsize: 11,
-                                valuefonsize: 11,
-                                value: divideStrings(amountPaid, totalAmount),
-                                progressBarColor:  Colors.green,
-                                content: 'Total Paid\namount',
-                                contentValue: amountPaid.toString(),
+                              DueReportDashboardContainer(
+                                valuefontsize: 12,
+                                iconfontsize: 18,
+                                fontsize: 12,
+                                icon: Icons.monetization_on,
+                                value: totalAmountBeforeDiscount.toString(),
+                                text1: 'Total amount(Before Discount)',
+                                containerWidth:
+                                    ScreenUtils().screenWidth(context),
                               ),
-                              PaidDueAmountContainer(
-                                textfonsize: 11,
-                                valuefonsize: 11,
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, "/CourseWiseDueReportScreen",
-                                      arguments: currentSessionId);
-                                },
-                                value: divideStrings(dueAmount, totalAmount),
-                                color: AppColors.alphabetSafeArea3,
-                                progressBarColor: AppColors.colorTomato,
-                                content: 'Total Due\namount',
-                                contentValue: dueAmount.toString(),
+                              SizedBox(
+                                  height:
+                                      ScreenUtils().screenHeight(context) * 0.01),
+                              DueReportDashboardContainer(
+                                valuefontsize: 12,
+                                iconfontsize: 18,
+                                fontsize: 12,
+                                icon: Icons.monetization_on,
+                                value: totalAmount.toString(),
+                                text1: 'Total amount(After discount)',
+                                containerWidth:
+                                    ScreenUtils().screenWidth(context),
+                              ),
+                              SizedBox(
+                                  height:
+                                      ScreenUtils().screenHeight(context) * 0.02),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  PaidDueAmountContainer(
+                                    textfonsize: 11,
+                                    valuefonsize: 11,
+                                    value: divideStrings(amountPaid, totalAmount),
+                                    progressBarColor:  Colors.green,
+                                    content: 'Total Paid\namount',
+                                    contentValue: amountPaid.toString(),
+                                  ),
+                                  PaidDueAmountContainer(
+                                    textfonsize: 11,
+                                    valuefonsize: 11,
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, "/CourseWiseDueReportScreen",
+                                          arguments: currentSessionId);
+                                    },
+                                    value: divideStrings(dueAmount, totalAmount),
+                                    color: AppColors.alphabetSafeArea3,
+                                    progressBarColor: AppColors.colorTomato,
+                                    content: 'Total Due\namount',
+                                    contentValue: dueAmount.toString(),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                  height:
+                                      ScreenUtils().screenHeight(context) * 0.02),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  PaidDueAmountContainer(
+                                    textfonsize: 11,
+                                    valuefonsize: 11,
+                                    value: divideStrings(
+                                        scholarshipAmount, totalAmount),
+                                    progressBarColor: AppColors.progressBarColor.withOpacity(0.6),
+                                    content: 'Scholarship \namount',
+                                    contentValue: scholarshipAmount.toString(),
+                                  ),
+                                  PaidDueAmountContainer(
+                                    textfonsize: 11,
+                                    valuefonsize: 11,
+                                    value: divideStrings(
+                                        concessionAmount, totalAmount),
+                                    progressBarColor: AppColors.alphabetSafeArea,
+                                    content: 'Concession \namount',
+                                    contentValue: concessionAmount.toString(),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                  height:
+                                      ScreenUtils().screenHeight(context) * 0.02),
+                              CustomPieChartForDashboard(
+                                paidAmount: amountPaid,
+                                dueAmount: dueAmount,
+                                scholarshipAmount: scholarshipAmount,
+                                concessionAmount: concessionAmount,
+                                totalAmountBeforeDiscount:
+                                    totalAmountBeforeDiscount,
                               ),
                             ],
-                          ),
-                          SizedBox(
-                              height:
-                                  ScreenUtils().screenHeight(context) * 0.02),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              PaidDueAmountContainer(
-                                textfonsize: 11,
-                                valuefonsize: 11,
-                                value: divideStrings(
-                                    scholarshipAmount, totalAmount),
-                                progressBarColor: AppColors.progressBarColor.withOpacity(0.6),
-                                content: 'Scholarship \namount',
-                                contentValue: scholarshipAmount.toString(),
-                              ),
-                              PaidDueAmountContainer(
-                                textfonsize: 11,
-                                valuefonsize: 11,
-                                value: divideStrings(
-                                    concessionAmount, totalAmount),
-                                progressBarColor: AppColors.alphabetSafeArea,
-                                content: 'Concession \namount',
-                                contentValue: concessionAmount.toString(),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height:
-                                  ScreenUtils().screenHeight(context) * 0.02),
-                          CustomPieChartForDashboard(
-                            paidAmount: amountPaid,
-                            dueAmount: dueAmount,
-                            scholarshipAmount: scholarshipAmount,
-                            concessionAmount: concessionAmount,
-                            totalAmountBeforeDiscount:
-                                totalAmountBeforeDiscount,
                           ),
                         ],
                       )
@@ -398,17 +427,33 @@ class _DueReportDashboardScreenDetailsState
         await _dashboardUsecase.getAllDueData(requestData: requestData);
 
     if (resource.status == STATUS.SUCCESS) {
-      totalAmount = double.parse(resource.data["total_amount"].toString()) -
-          double.parse(resource.data["scholarship_amount"].toString()) -
-          double.parse(resource.data["concession_amount"].toString());
-      totalAmountBeforeDiscount =
-          double.parse(resource.data["total_amount"].toString());
-      amountPaid = double.parse(resource.data["amount_paid"].toString());
-      dueAmount = double.parse(resource.data["due_amount"].toString());
-      scholarshipAmount =
-          double.parse(resource.data["scholarship_amount"].toString());
-      concessionAmount =
-          double.parse(resource.data["concession_amount"].toString());
+      if (resource.data != null && resource.data!.isEmpty)
+        {
+
+          totalAmount = 0;
+          totalAmountBeforeDiscount =
+              0;
+          amountPaid = 0;
+          dueAmount = 0;
+          scholarshipAmount =
+              0;
+          concessionAmount =
+              0;
+        }
+      else{
+        totalAmount = double.parse(resource.data["total_amount"].toString()) -
+            double.parse(resource.data["scholarship_amount"].toString()) -
+            double.parse(resource.data["concession_amount"].toString());
+        totalAmountBeforeDiscount =
+            double.parse(resource.data["total_amount"].toString());
+        amountPaid = double.parse(resource.data["amount_paid"].toString());
+        dueAmount = double.parse(resource.data["due_amount"].toString());
+        scholarshipAmount =
+            double.parse(resource.data["scholarship_amount"].toString());
+        concessionAmount =
+            double.parse(resource.data["concession_amount"].toString());
+      }
+
 
       setState(() {
         isLoading = false;

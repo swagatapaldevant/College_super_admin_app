@@ -86,7 +86,7 @@ class _DateWiseCollectionContainerState extends State<DateWiseCollectionContaine
                     Text(
                      "₹ ${widget.totalCollection}",
                       style:  TextStyle(
-                        fontSize: 12,
+                        fontSize: 10,
                         fontWeight: FontWeight.w600,
                         color: AppColors.colorBlack,
                         fontFamily: "Poppins",
