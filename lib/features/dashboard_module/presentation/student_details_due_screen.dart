@@ -24,11 +24,11 @@ class StudentDetailsDueScreen extends StatefulWidget {
   const StudentDetailsDueScreen({super.key, required this.semesterDetailsData});
 
   @override
-  State<StudentDetailsDueScreen> createState() => _StudentDetailsDueScreenState();
+  State<StudentDetailsDueScreen> createState() =>
+      _StudentDetailsDueScreenState();
 }
 
 class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
-
   bool isLoading = false;
   final DashboardUsecase _dashboardUsecase = getIt<DashboardUsecase>();
   final SharedPref _pref = getIt<SharedPref>();
@@ -59,13 +59,16 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    HeaderSection(headerName: "Course wise Students Due Report"),
+                    HeaderSection(
+                        headerName: "Course wise Students Due Report"),
                     Bounceable(
-                      onTap: () async{
+                      onTap: () async {
                         final image = await _screenshotController.capture();
                         if (image != null) {
                           final directory = await getTemporaryDirectory();
-                          final imagePath = await File('${directory.path}/screenshot.png').create();
+                          final imagePath =
+                              await File('${directory.path}/screenshot.png')
+                                  .create();
                           await imagePath.writeAsBytes(image);
                           Share.shareXFiles([XFile(imagePath.path)], text: '.');
                         }
@@ -87,20 +90,25 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         SizedBox(height: 10),
-
                         Expanded(
                           child: ListView.builder(
                             itemCount: studentList.length,
                             itemBuilder: (context, index) {
                               final student = studentList[index];
-                              final total = (double.parse(student.totalAmount.toString())
-                                  - double.parse(student.scholarshipAmount.toString())
-                                  - double.parse(student.concessionAmount.toString()))
+                              final total = (double.parse(
+                                          student.totalAmount.toString()) -
+                                      double.parse(student.scholarshipAmount
+                                          .toString()) -
+                                      double.parse(
+                                          student.concessionAmount.toString()))
                                   .toStringAsFixed(2);
-                              final paid = double.parse(student.amountPaid.toString()).toStringAsFixed(2);
-                              final due = double.parse(student.dueAmount.toString()).toStringAsFixed(2);
+                              final paid =
+                                  double.parse(student.amountPaid.toString())
+                                      .toStringAsFixed(2);
+                              final due =
+                                  double.parse(student.dueAmount.toString())
+                                      .toStringAsFixed(2);
 
                               return _buildTableRow(
                                 studentName: student.fullName.toString(),
@@ -120,7 +128,6 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
         ),
       ),
     );
-
   }
 
   Widget _buildTableHeader() {
@@ -172,11 +179,11 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
   }
 
   Widget _buildTableCell(
-      String text, {
-        int flex = 1,
-        bool isHeader = false,
-        Color? color,
-      }) {
+    String text, {
+    int flex = 1,
+    bool isHeader = false,
+    Color? color,
+  }) {
     return Expanded(
       flex: flex,
       child: Container(
@@ -211,17 +218,16 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
     });
 
     Map<String, dynamic> requestData = {
-      "session_id" : widget.semesterDetailsData.sessionId,
+      "session_id": widget.semesterDetailsData.sessionId,
       "data_type": "course",
       "course_id": widget.semesterDetailsData.courseId,
       "semester_id": widget.semesterDetailsData.semesterId
     };
 
-    Resource resource =
-    await _dashboardUsecase.getAllCourseDetailsData(requestData: requestData);
+    Resource resource = await _dashboardUsecase.getAllCourseDetailsData(
+        requestData: requestData);
 
     if (resource.status == STATUS.SUCCESS) {
-
       studentList = (resource.data as List)
           .map((x) => StudentDetailsByCourseDueModel.fromJson(x))
           .toList();
@@ -237,23 +243,21 @@ class _StudentDetailsDueScreenState extends State<StudentDetailsDueScreen> {
     }
   }
 
-
-  Widget loader(){
+  Widget loader() {
     return Expanded(
       child: ListView.builder(
           itemCount: 15,
-          itemBuilder: (BuildContext context, int index){
-            return  Padding(
-              padding:  EdgeInsets.only(
-                  top: ScreenUtils().screenHeight(context)*0.012),
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  top: ScreenUtils().screenHeight(context) * 0.012),
               child: CustomShimmer(
                 height: ScreenUtils().screenHeight(context) * 0.07,
-                width: ScreenUtils().screenWidth(context) ,
+                width: ScreenUtils().screenWidth(context),
                 radius: 10,
               ),
             );
           }),
     );
   }
-
 }

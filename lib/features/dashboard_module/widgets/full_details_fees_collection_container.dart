@@ -65,38 +65,26 @@ class _FullDetailsFeesCollectionContainerState
                           children: [
                             SizedBox(
                               width: ScreenUtils().screenWidth(context)*0.5,
-                              child: Row(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                spacing: 2,
                                 children: [
-                                  // CircleAvatar(
-                                  //   radius: 18,
-                                  //   backgroundImage: NetworkImage(
-                                  //       "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"),
-                                  // ),
-                                  // SizedBox(
-                                  //   width: 8,
-                                  // ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    spacing: 2,
-                                    children: [
-                                      Text(
-                                        name.length > 13 ? '${name.substring(0, 13)}...' : name,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12,
-                                            fontFamily: "Poppins",
-                                            color: AppColors.colorBlack),
-                                      ),
-                                      Text(
-                                        widget.studentList[index].identificationNo.toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 10,
-                                            fontFamily: "Poppins",
-                                            color: AppColors.gray7),
-                                      ),
-                                    ],
-                                  )
+                                  Text(
+                                    name.length > 13 ? '${name.substring(0, 13)}...' : name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                        fontFamily: "Poppins",
+                                        color: AppColors.colorBlack),
+                                  ),
+                                  Text(
+                                    widget.studentList[index].identificationNo.toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10,
+                                        fontFamily: "Poppins",
+                                        color: AppColors.gray7),
+                                  ),
                                 ],
                               ),
                             ),

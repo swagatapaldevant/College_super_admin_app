@@ -89,28 +89,20 @@ class _RecentlyScholarshipStudentsContainerState
         Row(
           mainAxisAlignment:MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                // CircleAvatar(
-                //   radius: 22,
-                //   backgroundImage: NetworkImage(
-                //       "https://media.istockphoto.com/id/1351018006/photo/smiling-male-student-sitting-in-university-classroom.jpg?s=612x612&w=0&k=20&c=G9doLib_ILUijluTSD5hstZBWqHHIcw4dBHhQcs-ON4="),
-                // ),
-                // SizedBox(
-                //   width: 10,
-                // ),
-                Text(
-                  studentName,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      fontFamily: "Poppins",
-                      color: AppColors.colorBlack),
-                ),
-              ],
+            SizedBox(
+              width: ScreenUtils().screenWidth(context)*0.3,
+              child: Text(
+                studentName,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    fontFamily: "Poppins",
+                    color: AppColors.colorBlack),
+              ),
             ),
 
             Container(
+              width: ScreenUtils().screenWidth(context)*0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: AppColors.progressBarColor,
